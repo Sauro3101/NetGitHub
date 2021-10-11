@@ -67,13 +67,13 @@ public class Programma {
         return("Denominazione: "+denominazione+"\nProduttore: "+produttore+"\nVersione: "+versione+"\nSistema operativo: "+os+"\nAnno: "+anno);
     }
     
-    public String compareAnno(int anno1,String nome1){
-        if(anno>anno1){
-            return("Il programma "+denominazione+" è più recente del programma "+nome1);
-        }else if(anno<anno1){
-            return("Il programma "+denominazione+" è più vecchio del programma "+nome1);
-        }else if(anno==anno1){
-            return("Il programma "+denominazione+" è dello stesso anno del programma "+nome1);
+    public String compareAnno(int anno,String denominazione){
+        if(this.anno>anno){
+            return("Il programma "+this.denominazione+" è più recente del programma "+denominazione);
+        }else if(this.anno<anno){
+            return("Il programma "+this.denominazione+" è più vecchio del programma "+denominazione);
+        }else if(this.anno==anno){
+            return("Il programma "+this.denominazione+" è dello stesso anno del programma "+denominazione);
         }else{
             return("ERRORE");
         }
