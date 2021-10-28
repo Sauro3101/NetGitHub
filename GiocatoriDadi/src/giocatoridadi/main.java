@@ -19,7 +19,7 @@ public class main {
         Dado d1;
         
         System.out.println("Inserisci quante facce avra' il dado: ");
-        d1 = Dado(in.readInt());  
+        d1 = new Dado(in.readInt());  
     }   
 }
     
