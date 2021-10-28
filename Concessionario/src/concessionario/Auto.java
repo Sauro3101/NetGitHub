@@ -15,12 +15,12 @@ public class Auto {
     private String colore;
     private Motore motore;
 
-    public Auto(String marca, String modello, int posti, String colore, Motore motore) {
+    public Auto(String marca, String modello, int posti, String colore, int nCilindri, int cilindrata, int cv, int nm) {
         this.marca = marca;
         this.modello = modello;
         this.posti = posti;
         this.colore = colore;
-        this.motore = motore;
+        this.motore=new Motore(nCilindri,cilindrata,cv,nm);
     }
 
     public String getMarca() {
@@ -55,12 +55,9 @@ public class Auto {
         this.colore = colore;
     }
 
-    public Motore getMotore() {
-        return motore;
-    }
-
-    public void setMotore(Motore motore) {
-        this.motore = motore;
+    @Override
+    public String toString() {
+        return "Auto{" + "\nmarca=" + marca + "\nmodello=" + modello + "\nposti=" + posti + "\ncolore=" + colore + "\n" + motore.toString() + '}';
     }
     
 }

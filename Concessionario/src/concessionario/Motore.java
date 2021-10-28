@@ -52,5 +52,10 @@ public class Motore {
     public void setNm(int nm) {
         this.nm = nm;
     }
+
+    @Override
+    public String toString() {
+        return "Motore{" + "nCilindri=" + nCilindri + ", cilindrata=" + cilindrata + ", cv=" + cv + ", nm=" + nm + '}';
+    }
     
 }

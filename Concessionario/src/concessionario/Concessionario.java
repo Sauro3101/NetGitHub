@@ -15,6 +15,9 @@ public class Concessionario {
 
     public Concessionario(int nAuto) {
         this.nAuto = nAuto;
+        auto[0]= new Auto("Ferrari","488GTB",2,"Rosso",8,4300,800,750);
+        auto[1]= new Auto("Lamborghini","Huracan STO",2,"Azzurro",10,6500,700,750);
+        auto[2]= new Auto("Ferrari","F8 Tributo",2,"Rosso",8,4300,820,770);
     }
 
     public int getnAuto() {
