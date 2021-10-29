@@ -107,17 +107,13 @@ public class main {
                     break;
                 case 4:
                     //Visualizzare i dati di  tutte le auto del concessionario ordinate per marca
-                    String[] nomi=new String[con.getnAuto()];
-                    for(i=0;i<con.getnAuto();i++){
-                        nomi[i]=a[i].getMarca();
-                        for (int i = 0; i < nomi.length; i++){  
-                            for (int j = i + 1; j < nomi.length; j++){  
-                            String tmp;  
-                                if (nomi[i].compareToIgnoreCase(nomi[j])>0){
-                                    tmp = nomi[i];
-                                    nomi[i] = nomi[j];  
-                                    nomi[j] = tmp;
-                                }
+                    Auto tmp;
+                    for (i = 0; i < a.length; i++){  
+                        for (int j = i + 1; j < a.length; j++){
+                            if (a[i].compareToIgnoreCase(a[j])>0){
+                                tmp = a[i];
+                                a[i] = a[j];  
+                                a[j] = tmp;
                             }
                         }
                     }
