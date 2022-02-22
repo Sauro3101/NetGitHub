@@ -2,6 +2,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -28,7 +29,11 @@ public class NewMain {
         // TODO code application logic here
         LetturaConfigurazione  lc = new LetturaConfigurazione();
         
-        //lc.leggiFileConfig();
+        lc.leggiFileConfig();
+        Date d = new Date();
+        //String s = "".concat((d.getDate())).concat("-").concat((d.getMonth() + 1)).concat("-").concat((d.getYear() + 1900));
+        //System.out.println(s);
+        //System.out.println(d.getDay() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900));
         
         ScriviTxt t = new ScriviTxt();
         
