@@ -48,7 +48,24 @@ public class main {
                     //Visualizzare i dati di  tutte le auto del concessionario ordinate per marca
                     a=con.ordinaMarca();
                     for(i=0;i<con.getnAuto();i++){
+<<<<<<< Updated upstream
                         System.out.println(a[i].toString()+"\n\n");
+=======
+                        nomi[i]=a[i].getMarca();
+                        for (i = 0; i < nomi.length; i++){  
+                            for (int j = i + 1; j < nomi.length - 1; j++){  
+                            String tmp;  
+                                if (nomi[i].compareToIgnoreCase(nomi[j])>0){
+                                    tmp = nomi[i];
+                                    nomi[i] = nomi[j];  
+                                    nomi[j] = tmp;
+                                }
+                            }
+                        }
+                    }
+                    for(i=0;i<con.getnAuto();i++){
+                        System.out.println(a[i].toString());
+>>>>>>> Stashed changes
                     }
                 }
                 default -> System.out.println("ERRORE\n");

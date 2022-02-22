@@ -27,6 +27,12 @@ public class testComputer {
         System.out.println(c2.toString());
         System.out.println(c3.toString());
         
+        
+        
+        
+        String titolo = "I promessi sposi";
+        String out = titolo.substring(2, 9);
+        System.out.println("\n\n\n\n\n\n\n\n\n\n" + out);
     }
     
     
