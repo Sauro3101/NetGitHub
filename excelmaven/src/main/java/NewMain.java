@@ -31,12 +31,12 @@ public class NewMain {
         
         lc.leggiFileConfig();
         Date d = new Date();
+        
         //String s = "".concat((d.getDate())).concat("-").concat((d.getMonth() + 1)).concat("-").concat((d.getYear() + 1900));
         //System.out.println(s);
         //System.out.println(d.getDay() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900));
         
         ScriviTxt t = new ScriviTxt();
-        
         t.scrivi();
     }
     

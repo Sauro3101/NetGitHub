@@ -82,7 +82,7 @@ public class LeggiExcel {
                     
                     ScriviTxt scrivi = new ScriviTxt();
                     
-                    scrivi.scrivi(record);
+                    scrivi.scrivi();
                     
                     System.out.println();
                     
