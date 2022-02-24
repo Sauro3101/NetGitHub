@@ -15,9 +15,9 @@ import java.io.IOException;
  */
 public class ScriviTxt {
     
-    public void scrivi() throws IOException{
+    public void scrivi(String s) throws IOException{
         
-        String path = "./src/main/java/scrittura.txt";
+        String path = "./src/main/java/Prova.txt";
         
         try{
             
@@ -33,6 +33,7 @@ public class ScriviTxt {
 
             BufferedWriter b = new BufferedWriter (w);
             
+            b.write(s);
 
             b.flush();
 

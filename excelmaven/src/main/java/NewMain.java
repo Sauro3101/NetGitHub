@@ -28,6 +28,9 @@ public class NewMain {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         LetturaConfigurazione  lc = new LetturaConfigurazione();
+        LeggiExcel le = new LeggiExcel();
+        
+        le.leggiE();
         
         lc.leggiFileConfig();
         Date d = new Date();
@@ -36,8 +39,6 @@ public class NewMain {
         //System.out.println(s);
         //System.out.println(d.getDay() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900));
         
-        ScriviTxt t = new ScriviTxt();
-        t.scrivi();
     }
     
 }

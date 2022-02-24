@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.text.ParseException;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -26,22 +27,26 @@ public class LeggiExcel {
     public void leggiE(){
         try{
             
-            FileInputStream file = new FileInputStream(new File("./AlcoholTAWEB.xlsx"));
+            FileInputStream file = new FileInputStream(new File("./src/main/java/AlcoholTAWEB.xlsx"));
             Workbook workbook = new XSSFWorkbook(file);
             
             
             BufferedReader reader = new BufferedReader(new FileReader("./src/main/java/Config.txt"));
-            
+            reader.readLine();
             
             DataFormatter dataFormatter = new DataFormatter();
             Iterator<Sheet> sheets = workbook.sheetIterator();
             
-            while(sheets.hasNext()) {
+            boolean aaa = true;
+            
+            while(aaa) {
                 
                 Sheet sh = sheets.next();
                 System.out.println("Sheet name is "+sh.getSheetName());
                 System.out.println("---------");
                 Iterator<Row> iterator = sh.iterator();
+                
+                
                 
                 while(iterator.hasNext()) {
                     
@@ -54,13 +59,23 @@ public class LeggiExcel {
                         
                         Cell cell = cellIterator.next();
                         String cellValue = null;
+                        String rigaConfigLetta;
+                        int lunghezzaLetta;
                         
                         String output = "";
+                        do{
+                            rigaConfigLetta = reader.readLine();
+                        }while(rigaConfigLetta.isBlank() ||rigaConfigLetta.isEmpty() || rigaConfigLetta.contains("record"));
+                        
+                        
+                        lunghezzaLetta = Integer.parseInt(rigaConfigLetta.substring((rigaConfigLetta.indexOf("§") + 1), (rigaConfigLetta.length())));
+                            
+                        System.out.println(lunghezzaLetta);
                         
                         if(cell.getCellType() == CellType.BLANK){
                             
                             //Leggo lunghezza del campo del txt dal file di config e concateno tanti " " quanti riportato da quel numero.
-                            int lunghezzaLetta = 5;
+                            
                             for(int i = 0; i <= lunghezzaLetta; i++){
                                 output.concat(" ");
                             }
@@ -68,9 +83,16 @@ public class LeggiExcel {
                         }else{
                             
                             cellValue = dataFormatter.formatCellValue(cell);
-                            int lunghezzaLetta = 5;
-                            for(int i = 0; i <= (lunghezzaLetta - cellValue.length()); i++){
-                                output.concat(" ");
+                            
+                            try{
+                                Integer.parseInt(cellValue);
+                                for(int i = 0; i <= (lunghezzaLetta - cellValue.length()); i++){
+                                    output.concat(" ");
+                                }
+                            }catch(Exception e){
+                                for(int i = 0; i <= (lunghezzaLetta - cellValue.length()); i++){
+                                    output.concat(" ");
+                                }
                             }
                             output.concat(cellValue);
                         }
@@ -82,12 +104,12 @@ public class LeggiExcel {
                     
                     ScriviTxt scrivi = new ScriviTxt();
                     
-                    scrivi.scrivi();
+                    scrivi.scrivi(record);
                     
                     System.out.println();
                     
                 }
-                
+                aaa = false;
             }
             
             workbook.close();
