@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -22,22 +23,13 @@ public class ScriviTxt {
         try{
             
             File file = new File(path);
-            
-            if (file.exists())
-            System.out.println("Il file " + path + " esiste");
-            else if (file.createNewFile())
-            System.out.println("Il file " + path + " è stato creato");
-            
-            FileWriter w = new FileWriter(path);
-            
+            FileWriter fr = new FileWriter(file, true);
+            BufferedWriter br = new BufferedWriter(fr);
+            br.write(s);
 
-            BufferedWriter b = new BufferedWriter (w);
-            
-            b.write(s);
+            br.close();
+            fr.close();
 
-            b.flush();
-
-            w.close();
         }catch(Exception e){
             System.out.println(e);
         }

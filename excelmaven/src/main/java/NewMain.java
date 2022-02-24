@@ -32,8 +32,14 @@ public class NewMain {
         
         le.leggiE();
         
-        lc.leggiFileConfig();
+        //lc.leggiFileConfig();
         Date d = new Date();
+        
+        
+                    
+        ScriviTxt scrivi = new ScriviTxt();
+
+        //scrivi.scrivi("");
         
         //String s = "".concat((d.getDate())).concat("-").concat((d.getMonth() + 1)).concat("-").concat((d.getYear() + 1900));
         //System.out.println(s);
