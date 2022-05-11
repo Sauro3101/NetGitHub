@@ -47,6 +47,7 @@ public class LeggiExcel {
                 Iterator<Row> iterator = sh.iterator();
                 
                 
+                Row roww = iterator.next();
                 
                 while(iterator.hasNext()) {
                     
@@ -65,12 +66,11 @@ public class LeggiExcel {
                         String output = "";
                         do{
                             rigaConfigLetta = reader.readLine();
-                        }while(rigaConfigLetta.isBlank() ||rigaConfigLetta.isEmpty() || rigaConfigLetta.contains("record"));
+                        }while(rigaConfigLetta.isBlank() ||rigaConfigLetta.isEmpty() || rigaConfigLetta.contains("record") || rigaConfigLetta.contains("a") || rigaConfigLetta.contains("h"));
                         
                         
                         lunghezzaLetta = Integer.parseInt(rigaConfigLetta.substring((rigaConfigLetta.indexOf("§") + 1), (rigaConfigLetta.length())));
-                            
-                        System.out.println(lunghezzaLetta);
+                        
                         
                         if(cell.getCellType() == CellType.BLANK){
                             
@@ -96,17 +96,16 @@ public class LeggiExcel {
                             }
                             output.concat(cellValue);
                         }
-                        System.out.print(cellValue+"\t");
                         
                         record.concat(output);
                         
                     }
                     
+                    System.out.println(record);
+                    
                     ScriviTxt scrivi = new ScriviTxt();
                     
                     scrivi.scrivi(record);
-                    
-                    System.out.println();
                     
                 }
                 aaa = false;
