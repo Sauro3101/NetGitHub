@@ -91,7 +91,7 @@ public class Player extends Entity {
             
             //Check object collision
             int objIndex = gp.cChecker.checkObject(this, true);
-            
+            pickUpObject(objIndex);
             
             if(!collisionOn){
                 switch(direction){
@@ -122,6 +122,14 @@ public class Player extends Entity {
 
         }
         
+    }
+    
+    public void pickUpObject(int i){
+        
+        if(i != 999){
+            
+            gp.obj[i] = null;
+        }
     }
     
     public void draw(Graphics2D g2){
