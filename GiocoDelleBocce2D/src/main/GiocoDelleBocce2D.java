@@ -29,6 +29,7 @@ public class GiocoDelleBocce2D {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
+        gamePanel.setupGame();
         gamePanel.startGameThread();
         
         
