@@ -33,12 +33,12 @@ public class Player extends Entity {
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
         solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 16;
-        //solidAreaDefaultX = solidArea.x;
-        //solidAreaDefaultX = solidArea.y;
-        solidArea.width = 32;
-        solidArea.width = 32;
+        solidArea.x = 8; //(gp.tileSize - 32) / 2;
+        solidArea.y = 16; //gp.tileSize - 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultX = solidArea.y;
+        solidArea.width = 16;
+        solidArea.height = 32;
         
         setDefaultValues();
         getPlayerImage();
@@ -56,14 +56,14 @@ public class Player extends Entity {
         
         try{
             
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/up2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/right2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-up-run-1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-up-run-2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-down-run-1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-down-run-2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-left-run-1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-left-run-2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-right-run-1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-right-run-2.png"));
             
         }catch(IOException e){
             System.out.println("errore");
