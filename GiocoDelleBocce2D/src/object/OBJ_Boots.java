@@ -13,16 +13,18 @@ import javax.imageio.ImageIO;
  *
  * @author Mattia Checchetto
  */
-public class OBJ_Key extends SuperObject{
+public class OBJ_Boots extends SuperObject{
     
-    public OBJ_Key(){
+    public OBJ_Boots(){
         
-        name = "Key";
+        name = "Boots";
         
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/object/key.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/object/door.png"));
         } catch (IOException ex) {
-            Logger.getLogger(OBJ_Key.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OBJ_Door.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
+    
 }

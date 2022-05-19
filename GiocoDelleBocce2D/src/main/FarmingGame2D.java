@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  *
  * @author Mattia Checchetto
  */
-public class GiocoDelleBocce2D {
+public class FarmingGame2D {
 
     /**
      * @param args the command line arguments
