@@ -20,7 +20,7 @@ public class FarmingGame2D {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Gioco delle bocce");
+        window.setTitle("Farming Game");
         
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

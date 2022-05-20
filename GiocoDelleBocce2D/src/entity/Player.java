@@ -146,6 +146,9 @@ public class Player extends Entity {
                         gp.ui.showMessage("You need a key!");
                     }
                     break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    break;
             }
         }
     }
