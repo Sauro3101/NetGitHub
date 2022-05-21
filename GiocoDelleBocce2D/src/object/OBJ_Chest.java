@@ -20,7 +20,7 @@ public class OBJ_Chest extends SuperObject{
         name = "Chest";
         
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/object/key.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/object/chest.png"));
         } catch (IOException ex) {
             Logger.getLogger(OBJ_Door.class.getName()).log(Level.SEVERE, null, ex);
         }
