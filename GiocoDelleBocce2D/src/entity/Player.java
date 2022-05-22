@@ -19,15 +19,14 @@ import main.KeyHandler;
  * @author Mattia Checchetto
  */
 public class Player extends Entity {
-    GamePanel gp;
-    KeyHandler keyH;
     
+    KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        
+        super(gp);
         this.keyH = keyH;
         
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -129,27 +128,6 @@ public class Player extends Entity {
         
         if(i != 999){
             
-            String objectName = gp.obj[i].name;
-            
-            switch(objectName){
-                case "Key":
-                    hasKey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got a key!");
-                    break;
-                case "Door":
-                    if(hasKey > 0){
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You opened the door!");
-                    }else{
-                        gp.ui.showMessage("You need a key!");
-                    }
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    break;
-            }
         }
     }
     

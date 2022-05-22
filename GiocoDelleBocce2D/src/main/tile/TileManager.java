@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import main.GamePanel;
+import main.UtilityTool;
 
 /**
  *
@@ -59,6 +60,19 @@ public class TileManager {
             e.printStackTrace();
         }
         
+    }
+    
+    public void setup(int index, String imagePath, boolean collision){
+        
+        UtilityTool uTool = new UtilityTool();
+        
+        try{
+            
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imagePath + ".png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
     public void loadMap(String filePath){
