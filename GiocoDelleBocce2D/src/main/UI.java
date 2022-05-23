@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import object.OBJ_Heart;
+import object.OBJ_Items;
 import object.OBJ_Key;
 import object.SuperObject;
 
@@ -29,7 +29,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font maruMonica, purisaB;
-    BufferedImage heart_full, heart_half, heart_void;
+    BufferedImage coin, water, milk, corn, seed;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -54,10 +54,12 @@ public class UI {
         }
         
         // CREATE HUD OBJECT
-        SuperObject heart = new OBJ_Heart(gp);
-        heart_full = heart.image;
-        heart_half = heart.image2;
-        heart_void = heart.image3;
+        SuperObject items = new OBJ_Items(gp);
+        coin = items.image;
+        water = items.image2;
+        milk = items.image3;
+        corn = items.image4;
+        seed = items.image5;
         
     }
     
@@ -81,50 +83,41 @@ public class UI {
         }
         // PLAY STATE
         if(gp.gameState == gp.playState){
-            drawPlayerLife();
+            drawPlayerMoney();
         }
         // PAUSE STATE
         if(gp.gameState == gp.pauseState){
-            drawPlayerLife();
+            drawPlayerMoney();
             drawPauseScreen();
         }
         // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){
-            drawPlayerLife();
+            drawPlayerMoney();
             drawDialogueScreen();
+        }
+        // SHOP STATE
+        if(gp.gameState == gp.shopState){
+            drawShopScreen();
+            drawPlayerMoney();
+        }
+        // CHEST STATE
+        if(gp.gameState == gp.chestState){
+            drawChestScreen();
         }
         
         
     }
     
-    public void drawPlayerLife(){
+    public void drawPlayerMoney(){
         
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
-        int i = 0;
         
-        // Draw max life
-        while(i < gp.player.maxLife/2){
-            g2.drawImage(heart_void, x, y, null);
-            i++;
-            x += gp.tileSize;
-        }
-        
-        // Reset values
-        x = gp.tileSize/2;
-        y = gp.tileSize/2;
-        i = 0;
-        
-        // Draw current life
-        while(i < gp.player.life){
-            g2.drawImage(heart_half, x, y, null);
-            i++;
-            if(i < gp.player.life){
-                g2.drawImage(heart_full, x, y, null);
-            }
-            i++;
-            x += gp.tileSize;
-        }
+        // Draw current money
+        g2.setFont(maruMonica);
+        g2.setColor(Color.white);
+        g2.drawImage(coin, x, y, null);
+        g2.drawString("$", 74, 65);
         
     }
     
@@ -191,7 +184,7 @@ public class UI {
             int y = gp.tileSize*3;
             g2.drawString(text, x, y);
             
-            text = "Rosso";
+            text = "Red";
             x = getCenterX(text);
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
@@ -199,7 +192,7 @@ public class UI {
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-            text = "Blu";
+            text = "Blue";
             x = getCenterX(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -207,7 +200,7 @@ public class UI {
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
-            text = "Verde";
+            text = "Green";
             x = getCenterX(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
@@ -258,6 +251,109 @@ public class UI {
     }
     
     public void drawSubWindow(int x, int y, int width, int height){
+        
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+        
+    }
+    
+    public void drawChestScreen(){
+        
+        // Window
+        int x = gp.tileSize*2;
+        int y = gp.screenHeight/2 - gp.tileSize*3;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*6;
+        
+        drawItemWindow(x, y, width, height);
+        
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize*3;
+        y += gp.tileSize*1.3;
+        g2.drawString("Water: ", x, y);
+        g2.drawImage(water, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 0){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Milk: ", x, y);
+        g2.drawImage(milk, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 1){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Seed: ", x, y);
+        g2.drawImage(seed, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 2){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Corn: ", x, y);
+        g2.drawImage(corn, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 3){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        
+        
+    }
+    
+    public void drawShopScreen(){
+        
+        // Window
+        int x = gp.tileSize*2;
+        int y = gp.screenHeight/2 - gp.tileSize*3;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*8;
+        
+        drawItemWindow(x, y, width, height);
+        
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize*1.5;
+        y += gp.tileSize*1.6;
+        g2.drawString("Prices: ", x, y);
+        x += 40;
+        y += 60;
+        g2.drawString("Water:", x, y);
+        g2.drawString(" " + gp.waterPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/4), gp.tileSize/2, gp.tileSize/2, null);
+        g2.drawImage(water, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 0){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Milk:", x, y);
+        g2.drawString(" " + gp.milkPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/3), gp.tileSize/2, gp.tileSize/2, null);
+        g2.drawImage(milk, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 1){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Seed:", x, y);
+        g2.drawString(" " + gp.seedPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/2), gp.tileSize/2, gp.tileSize/2, null);
+        g2.drawImage(seed, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 2){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        y += 60;
+        g2.drawString("Corn:", x, y);
+        g2.drawString(" " + gp.cornPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/2), gp.tileSize/2, gp.tileSize/2, null);
+        g2.drawImage(corn, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        if(commandNum == 3){
+            g2.drawString("<", x+gp.tileSize*7, y);
+        }
+        
+    }
+    
+    public void drawItemWindow(int x, int y, int width, int height){
         
         Color c = new Color(0, 0, 0, 210);
         g2.setColor(c);

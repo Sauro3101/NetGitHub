@@ -4,9 +4,10 @@
  */
 package main;
 
-import entity.NPC_OldMan;
+import entity.Cow;
 import object.OBJ_Chest;
 import object.OBJ_Door;
+import object.OBJ_Field;
 import object.OBJ_Key;
 
 /**
@@ -23,13 +24,53 @@ public class AssetSetter {
     
     public void setObject(){
         
+        gp.obj[0] = new OBJ_Chest();
+        gp.obj[0].worldX = gp.tileSize*10;
+        gp.obj[0].worldY = gp.tileSize*8;
+        
+        gp.obj[5] = new OBJ_Field();
+        gp.obj[5].worldX = gp.tileSize*38;
+        gp.obj[5].worldY = gp.tileSize*9;
+        
+        gp.obj[6] = new OBJ_Field();
+        gp.obj[6].worldX = gp.tileSize*37;
+        gp.obj[6].worldY = gp.tileSize*9;
+        
+        gp.obj[7] = new OBJ_Field();
+        gp.obj[7].worldX = gp.tileSize*38;
+        gp.obj[7].worldY = gp.tileSize*10;
+        
+        gp.obj[8] = new OBJ_Field();
+        gp.obj[8].worldX = gp.tileSize*37;
+        gp.obj[8].worldY = gp.tileSize*10;
+        
+        /*gp.obj[5] = new OBJ_Letter_S();
+        gp.obj[5].worldX = gp.tileSize*9;
+        gp.obj[5].worldY = gp.tileSize*30;
+        
+        gp.obj[6] = new OBJ_Letter_H();
+        gp.obj[6].worldX = gp.tileSize*9;
+        gp.obj[6].worldY = gp.tileSize*31;
+        
+        gp.obj[7] = new OBJ_Letter_O();
+        gp.obj[7].worldX = gp.tileSize*9;
+        gp.obj[7].worldY = gp.tileSize*32;
+        
+        gp.obj[8] = new OBJ_Letter_P();
+        gp.obj[8].worldX = gp.tileSize*9;
+        gp.obj[8].worldY = gp.tileSize*33;
+        */
     }
     
     public void setNPC(){
         
-        gp.npc[0] = new NPC_OldMan(gp);
-        gp.npc[0].worldX = gp.tileSize*21;
-        gp.npc[0].worldY = gp.tileSize*21;
+        gp.npc[0] = new Cow(gp);
+        gp.npc[0].worldX = gp.tileSize*29;
+        gp.npc[0].worldY = gp.tileSize*17;
+        
+        gp.npc[1] = new Cow(gp);
+        gp.npc[1].worldX = gp.tileSize*31;
+        gp.npc[1].worldY = gp.tileSize*14;
         
     }
     

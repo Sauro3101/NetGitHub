@@ -15,23 +15,27 @@ import main.GamePanel;
  *
  * @author Studente Turno B
  */
-public class OBJ_Heart extends SuperObject{
+public class OBJ_Items extends SuperObject{
     
     GamePanel gp;
     
-    public OBJ_Heart(GamePanel gp){
+    public OBJ_Items(GamePanel gp){
         
         this.gp = gp;
         
         name = "Heart";
         
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/object/heart_full.png"));
-            image2 = ImageIO.read(getClass().getResourceAsStream("/res/object/heart_half.png"));
-            image3 = ImageIO.read(getClass().getResourceAsStream("/res/object/heart_void.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/object/coin.png"));
+            image2 = ImageIO.read(getClass().getResourceAsStream("/res/object/water_bucket.png"));
+            image3 = ImageIO.read(getClass().getResourceAsStream("/res/object/milk_bucket.png"));
+            image4 = ImageIO.read(getClass().getResourceAsStream("/res/object/corn.png"));
+            image5 = ImageIO.read(getClass().getResourceAsStream("/res/object/key.png"));
             image = uTool.scaleimage(image, gp.tileSize, gp.tileSize);
             image2 = uTool.scaleimage(image2, gp.tileSize, gp.tileSize);
             image3 = uTool.scaleimage(image3, gp.tileSize, gp.tileSize);
+            image4 = uTool.scaleimage(image4, gp.tileSize, gp.tileSize);
+            image5 = uTool.scaleimage(image5, gp.tileSize, gp.tileSize);
             
         } catch (IOException ex) {
             Logger.getLogger(OBJ_Key.class.getName()).log(Level.SEVERE, null, ex);

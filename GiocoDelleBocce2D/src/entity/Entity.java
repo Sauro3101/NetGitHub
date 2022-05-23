@@ -31,23 +31,25 @@ public class Entity {
     public int actionLockerCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
-
-    // Character status
-    public int maxLife;
-    public int life;
+    public int water;
+    public int milk;
+    public int apple;
+    public int corn;
+    public int seed;
+    public int money;
     
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
     
     public void setAction(){}
-    public void speak(){
+    public void chooseDialogue(){}
+    public void speak(int i){
         
-        if(dialogues[dialogueIndex] == null){
-            dialogueIndex = 0;
+        if(dialogues[i] == null){
+            i = 0;
         }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        gp.ui.currentDialogue = dialogues[i];
         
         switch(gp.player.direction){
             case "up":

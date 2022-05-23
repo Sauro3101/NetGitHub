@@ -84,15 +84,18 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
 
                     if(gp.ui.commandNum == 0){
-                        System.out.println("Color specific stuff");
+                        System.out.println("Color red");
+                        gp.player.playerColor = "red";
                         gp.gameState = gp.playState;
                     }
                     if(gp.ui.commandNum == 1){
-                        System.out.println("Color specific stuff");
+                        System.out.println("Color blue");
+                        gp.player.playerColor = "blue";
                         gp.gameState = gp.playState;
                     }
                     if(gp.ui.commandNum == 2){
-                        System.out.println("Color specific stuff");
+                        System.out.println("Color green");
+                        gp.player.playerColor = "green";
                         gp.gameState = gp.playState;
                     }
                     if(gp.ui.commandNum == 3){
@@ -102,6 +105,7 @@ public class KeyHandler implements KeyListener{
                     //System.out.println("Select item");
                 }
                 
+                gp.player.getPlayerImage();
             }
             
         }else if(gp.gameState == gp.playState){
@@ -154,6 +158,105 @@ public class KeyHandler implements KeyListener{
             }
             
         }else if(gp.gameState == gp.dialogueState){
+            
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.playState;
+            }
+        }else if(gp.gameState == gp.shopState){
+            
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 3;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 3){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
+                        if(gp.player.money >= gp.waterPrice){
+                            System.out.println("Buy water");
+                            gp.player.water += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 1){
+                        if(gp.player.money >= gp.milkPrice){
+                            System.out.println("Buy milk");
+                            gp.player.milk += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 2){
+                        if(gp.player.money >= gp.seedPrice){
+                            System.out.println("Buy seed");
+                            gp.player.seed += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 3){
+                        if(gp.player.money >= gp.cornPrice){
+                            System.out.println("Buy corn");
+                            gp.player.corn += 1;
+                        }
+                    }
+
+                    //System.out.println("Select item");
+                }
+            
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.playState;
+            }
+        }else if(gp.gameState == gp.chestState){
+            
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 3;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 3){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
+                        // Controllo se in cesta ci sono abbastanza oggetti, li tolgo dalla cesta, e li do al personaggio
+                        if(gp.player.money >= gp.waterPrice){
+                            System.out.println("Buy water");
+                            gp.player.water += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 1){
+                        if(gp.player.money >= gp.milkPrice){
+                            System.out.println("Buy milk");
+                            gp.player.milk += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 2){
+                        if(gp.player.money >= gp.seedPrice){
+                            System.out.println("Buy seed");
+                            gp.player.seed += 1;
+                        }
+                    }
+                    if(gp.ui.commandNum == 3){
+                        if(gp.player.money >= gp.cornPrice){
+                            System.out.println("Buy corn");
+                            gp.player.corn += 1;
+                        }
+                    }
+
+                    //System.out.println("Select item");
+                }
             
             if(code == KeyEvent.VK_ENTER){
                 gp.gameState = gp.playState;

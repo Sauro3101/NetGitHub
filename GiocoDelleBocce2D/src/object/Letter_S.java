@@ -13,24 +13,18 @@ import javax.imageio.ImageIO;
  *
  * @author Mattia Checchetto
  */
-public class OBJ_Chest extends SuperObject{
+public class Letter_S extends SuperObject{
     
-    public int water = 0;
-    public int milk = 0;
-    public int seed = 0;
-    public int corn = 0;
-    
-    public OBJ_Chest(){
+    public Letter_S(){
         
-        name = "Chest";
+        name = "S";
         
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/object/chest.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/object/Letter_S.png"));
         } catch (IOException ex) {
             Logger.getLogger(OBJ_Door.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        collision = true;
-        
     }
+    
 }

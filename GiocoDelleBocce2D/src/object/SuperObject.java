@@ -15,7 +15,7 @@ import main.UtilityTool;
  * @author Mattia Checchetto
  */
 public class SuperObject {
-    public BufferedImage image, image2, image3;
+    public BufferedImage image, image2, image3, image4, image5;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;

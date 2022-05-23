@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
+    public EventHandler eventH = new EventHandler(this);
     Thread gameThread;
     
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -60,6 +61,15 @@ public class GamePanel extends JPanel implements Runnable{
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int shopState = 4;
+    public final int chestState = 5;
+    
+    // Shop items prices
+    public final int waterPrice = 3;
+    public final int milkPrice = 8;
+    public final int seedPrice = 3;
+    public final int cornPrice = 6;
+    //public final int applePrice = 10;
     
     
     

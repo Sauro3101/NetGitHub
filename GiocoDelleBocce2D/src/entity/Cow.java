@@ -11,10 +11,12 @@ import main.GamePanel;
  *
  * @author Greta
  */
-public class NPC_OldMan extends Entity{
+public class Cow extends Entity{
 
-    public NPC_OldMan(GamePanel gp) {
+    public Cow(GamePanel gp) {
         super(gp);
+        water = 0;
+        corn = 0;
         
         direction = "down";
         speed = 1;
@@ -38,10 +40,11 @@ public class NPC_OldMan extends Entity{
     
     public void setDialogue(){
         
-        dialogues[0] = "Hello, lad.";
-        dialogues[1] = "So you've come to this island to \nfind the treasure?";
-        dialogues[2] = "I used to be a great wizard but now... \nI'm a bit too old for taking an adventure.";
-        dialogues[3] = "Well, good luck un you.";
+        dialogues[0] = "I need water!";
+        dialogues[1] = "I need food!";
+        dialogues[2] = "I need water and food!";
+        dialogues[3] = "I'm making milk!";
+        dialogues[4] = "The milk is ready!";
         
     }
     
@@ -49,7 +52,7 @@ public class NPC_OldMan extends Entity{
         
         actionLockerCounter++;
         
-        if(actionLockerCounter == 120){
+        if(actionLockerCounter == 100){
 
             Random random = new Random();
             int i = random.nextInt(100)+1;
@@ -70,11 +73,28 @@ public class NPC_OldMan extends Entity{
         
     }
     
-    public void speak(){
+    public void chooseDialogue(){
         
         // Character specific stuff
+        int i = 0;
         
-        super.speak();
+        if(water == 0 && corn != 0 && milk == 0){
+            i = 0;
+        }
+        if(water != 0 && corn == 0 && milk == 0){
+            i = 1;
+        }
+        if(water == 0 && corn == 0 && milk == 0){
+            i = 2;
+        }
+        if(water != 0 && corn != 0 && milk == 0){
+            i = 3;
+        }
+        if(water == 0 && corn == 0 && milk > 0){
+            i = 4;
+        }
+        
+        super.speak(i);
         
     }
     

@@ -19,6 +19,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
+    public String playerColor = "red";
 
     public Player(GamePanel gp, KeyHandler keyH) {
         
@@ -47,21 +48,21 @@ public class Player extends Entity {
         speed = 4;
         direction = "down";
         
-        // Player status
-        maxLife = 6;
-        life = maxLife;
+        // Inizialize water and money
+        water = 0;
+        money = 0;
     }
     
     public void getPlayerImage(){
         
-        up1 = setup("/res/player/red-up-run-1");
-        up2 = setup("/res/player/red-up-run-2");
-        down1 = setup("/res/player/red-down-run-1");
-        down2 = setup("/res/player/red-down-run-2");
-        left1 = setup("/res/player/red-left-run-1");
-        left2 = setup("/res/player/red-left-run-2");
-        right1 = setup("/res/player/red-right-run-1");
-        right2 = setup("/res/player/red-right-run-2");
+        up1 = setup("/res/player/" + playerColor + "-up-run-1");
+        up2 = setup("/res/player/" + playerColor + "-up-run-2");
+        down1 = setup("/res/player/" + playerColor + "-down-run-1");
+        down2 = setup("/res/player/" + playerColor + "-down-run-2");
+        left1 = setup("/res/player/" + playerColor + "-left-run-1");
+        left2 = setup("/res/player/" + playerColor + "-left-run-2");
+        right1 = setup("/res/player/" + playerColor + "-right-run-1");
+        right2 = setup("/res/player/" + playerColor + "-right-run-2");
     }
     
     
@@ -84,12 +85,18 @@ public class Player extends Entity {
             gp.cChecker.checkTile(this);
             
             // Check object collision
+            gp.ui.commandNum = 0;
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
             
             // Check NPC collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
+            
+            // Check event
+            gp.eventH.checkEvent();
+            
+            gp.keyH.enterPressed = false;
             
             // Check collision
             if(!collisionOn){
@@ -128,6 +135,13 @@ public class Player extends Entity {
         
         if(i != 999){
             
+            String objectName = gp.obj[i].name;
+            
+            switch(objectName){
+                case "Chest":
+                    gp.gameState = gp.chestState;
+                    break;
+            }
         }
         
     }
@@ -138,11 +152,10 @@ public class Player extends Entity {
             //System.out.println("NPC hitten");
             if(gp.keyH.enterPressed){
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[i].chooseDialogue();
             }
             
         }
-        gp.keyH.enterPressed = false;
         
     }
     

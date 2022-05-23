@@ -80,6 +80,12 @@ public class TileManager {
         setup(39, "earth", false);
         setup(40, "wall", true);
         setup(41, "tree", true);
+        setup(42, "fence_up_left", true);
+        setup(43, "fence_up_right", true);
+        setup(44, "fence_down_left", true);
+        setup(45, "fence_down_right", true);
+        setup(46, "fence_vertical", true);
+        setup(47, "fence_horizontal", true);
         
     }
     
