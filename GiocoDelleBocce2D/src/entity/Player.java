@@ -4,13 +4,9 @@
  */
 package entity;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -37,7 +33,7 @@ public class Player extends Entity {
         solidArea.y = 16; //gp.tileSize - 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultX = solidArea.y;
-        solidArea.width = 16;
+        solidArea.width = 32;
         solidArea.height = 32;
         
         setDefaultValues();
@@ -54,22 +50,16 @@ public class Player extends Entity {
     
     public void getPlayerImage(){
         
-        try{
-            
-            up1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-up-run-1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-up-run-2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-down-run-1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-down-run-2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-left-run-1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-left-run-2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-right-run-1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/red-right-run-2.png"));
-            
-        }catch(IOException e){
-            System.out.println("errore");
-            //e.printStackTrace();
-        }
+        up1 = setup("/res/player/red-up-run-1");
+        up2 = setup("/res/player/red-up-run-2");
+        down1 = setup("/res/player/red-down-run-1");
+        down2 = setup("/res/player/red-down-run-2");
+        left1 = setup("/res/player/red-left-run-1");
+        left2 = setup("/res/player/red-left-run-2");
+        right1 = setup("/res/player/red-right-run-1");
+        right2 = setup("/res/player/red-right-run-2");
     }
+    
     
     public void update(){
         
@@ -85,14 +75,19 @@ public class Player extends Entity {
                 direction = "right";
             }
             
-            //Check tile collision
+            // Check tile collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
             
-            //Check object collision
+            // Check object collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
             
+            // Check NPC collision
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+            
+            // Check collision
             if(!collisionOn){
                 switch(direction){
                     case "up":
@@ -110,6 +105,7 @@ public class Player extends Entity {
                 }
             }
 
+            // Change image for walk
             spriteCounter++;
             if(spriteCounter > 12){
                 if(spriteNum == 1){
@@ -129,6 +125,21 @@ public class Player extends Entity {
         if(i != 999){
             
         }
+        
+    }
+    
+    public void interactNPC(int i){
+        
+        if(i != 999){
+            //System.out.println("NPC hitten");
+            if(gp.keyH.enterPressed){
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
+            
+        }
+        gp.keyH.enterPressed = false;
+        
     }
     
     public void draw(Graphics2D g2){
@@ -173,7 +184,7 @@ public class Player extends Entity {
                 break;
         }
         
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
         
     }
 }

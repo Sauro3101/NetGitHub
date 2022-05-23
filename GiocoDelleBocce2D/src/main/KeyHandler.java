@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed = false;
     
     // DEBUG
     public boolean checkDrawTime = false;
@@ -32,41 +32,132 @@ public class KeyHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         
-        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-            upPressed = true;
-            //System.out.println("su");
-        }
-        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-            downPressed = true;
-            //System.out.println("giu");
-        }
-        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
-            leftPressed = true;
-            //System.out.println("left");
-        }
-        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
-            rightPressed = true;
-            //System.out.println("right");
-        }
-        if(code == KeyEvent.VK_P){
+        if(gp.gameState == gp.titleState){
             
-            if(gp.gameState == gp.playState){
+            if(gp.ui.titleScreenState == 0){
+            
+                if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 2;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 2){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
+                        gp.ui.titleScreenState = 1;
+                    }
+                    if(gp.ui.commandNum == 1){
+                        // Add later saving and load
+                    }
+                    if(gp.ui.commandNum == 2){
+                        System.exit(0);
+                    }
+
+                    //System.out.println("Select item");
+                }
+                
+            }else if(gp.ui.titleScreenState == 1){
+            
+                if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 2;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 3){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
+                        System.out.println("Color specific stuff");
+                        gp.gameState = gp.playState;
+                    }
+                    if(gp.ui.commandNum == 1){
+                        System.out.println("Color specific stuff");
+                        gp.gameState = gp.playState;
+                    }
+                    if(gp.ui.commandNum == 2){
+                        System.out.println("Color specific stuff");
+                        gp.gameState = gp.playState;
+                    }
+                    if(gp.ui.commandNum == 3){
+                        gp.ui.titleScreenState = 0;
+                    }
+
+                    //System.out.println("Select item");
+                }
+                
+            }
+            
+        }else if(gp.gameState == gp.playState){
+        
+            if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                upPressed = true;
+                //System.out.println("su");
+            }
+            if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                downPressed = true;
+                //System.out.println("giu");
+            }
+            if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
+                leftPressed = true;
+                //System.out.println("left");
+            }
+            if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
+                rightPressed = true;
+                //System.out.println("right");
+            }
+            if(code == KeyEvent.VK_P){
+
                 gp.gameState = gp.pauseState;
-            }else if(gp.gameState == gp.pauseState){
+
+                //System.out.println("Game paused");
+            }
+            if(code == KeyEvent.VK_ENTER){
+
+                enterPressed = true;
+
+                //System.out.println("Try to speak");
+            }
+            if(code == KeyEvent.VK_T){
+
+                if(checkDrawTime){
+                    checkDrawTime = false;
+                }else if(!checkDrawTime){
+                    checkDrawTime = true;
+                }
+
+                //System.out.println("Check draw time");
+            }
+        }else if(gp.gameState == gp.pauseState){
+            
+            if(code == KeyEvent.VK_P){
+
+                gp.gameState = gp.playState;
+
+                //System.out.println("Game not paused");
+            }
+            
+        }else if(gp.gameState == gp.dialogueState){
+            
+            if(code == KeyEvent.VK_ENTER){
                 gp.gameState = gp.playState;
             }
-            
-            //System.out.println("Game paused");
-        }
-        if(code == KeyEvent.VK_T){
-            
-            if(checkDrawTime){
-                checkDrawTime = false;
-            }else if(!checkDrawTime){
-                checkDrawTime = true;
-            }
-            
-            //System.out.println("Check draw time");
         }
         
     }
