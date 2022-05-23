@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import main.GamePanel;
 
 /**
  *
@@ -15,7 +16,11 @@ import javax.imageio.ImageIO;
  */
 public class OBJ_Key extends SuperObject{
     
-    public OBJ_Key(){
+    GamePanel gp;
+    
+    public OBJ_Key(GamePanel gp){
+        
+        this.gp = gp;
         
         name = "Key";
         
