@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed = false;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed = false, fPressed = false, gPressed = false, mPressed = false;
     
     // DEBUG
     public boolean checkDrawTime = false;
@@ -57,6 +57,9 @@ public class KeyHandler implements KeyListener{
                     }
                     if(gp.ui.commandNum == 1){
                         // Add later saving and load
+                        // VIEW INSTRUCTION SCREEN
+                        gp.ui.commandNum = 0;
+                        gp.ui.titleScreenState = 2;
                     }
                     if(gp.ui.commandNum == 2){
                         System.exit(0);
@@ -87,18 +90,35 @@ public class KeyHandler implements KeyListener{
                         System.out.println("Color red");
                         gp.player.playerColor = "red";
                         gp.gameState = gp.playState;
+                        gp.ui.commandNum = 0;
                     }
                     if(gp.ui.commandNum == 1){
                         System.out.println("Color blue");
                         gp.player.playerColor = "blue";
                         gp.gameState = gp.playState;
+                        gp.ui.commandNum = 0;
                     }
                     if(gp.ui.commandNum == 2){
                         System.out.println("Color green");
                         gp.player.playerColor = "green";
                         gp.gameState = gp.playState;
+                        gp.ui.commandNum = 0;
                     }
                     if(gp.ui.commandNum == 3){
+                        gp.ui.titleScreenState = 0;
+                        gp.ui.commandNum = 0;
+                    }
+
+                    //System.out.println("Select item");
+                }
+                
+                gp.player.getPlayerImage();
+            }else if(gp.ui.titleScreenState == 2){
+            
+                if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_ESCAPE){
+
+                    if(gp.ui.commandNum == 0){
+                        gp.ui.commandNum = 1;
                         gp.ui.titleScreenState = 0;
                     }
 
@@ -148,18 +168,56 @@ public class KeyHandler implements KeyListener{
 
                 //System.out.println("Check draw time");
             }
+            if(code == KeyEvent.VK_I){
+
+                gp.gameState = gp.inventaryState;
+
+                //System.out.println("Game paused");
+            }
+            if(code == KeyEvent.VK_F){
+
+                fPressed = true;
+
+                //System.out.println("Check draw time");
+            }
+            if(code == KeyEvent.VK_G){
+
+                gPressed = true;
+
+                //System.out.println("Check draw time");
+            }
+            if(code == KeyEvent.VK_M){
+
+                mPressed = true;
+
+                //System.out.println("Check draw time");
+            }
         }else if(gp.gameState == gp.pauseState){
             
-            if(code == KeyEvent.VK_P){
+            if(code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE){
 
                 gp.gameState = gp.playState;
+
+                //System.out.println("Game not paused");
+            }
+            if(code == KeyEvent.VK_ENTER){
+
+                if(gp.ui.commandNum == 0){
+                    gp.gameState = gp.titleState;
+                    gp.ui.titleScreenState = 0;
+                }
 
                 //System.out.println("Game not paused");
             }
             
         }else if(gp.gameState == gp.dialogueState){
             
-            if(code == KeyEvent.VK_ENTER){
+            if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_ESCAPE){
+                gp.gameState = gp.playState;
+            }
+        }else if(gp.gameState == gp.inventaryState){
+            
+            if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_I){
                 gp.gameState = gp.playState;
             }
         }else if(gp.gameState == gp.shopState){
@@ -184,24 +242,28 @@ public class KeyHandler implements KeyListener{
                         if(gp.player.money >= gp.waterPrice){
                             System.out.println("Buy water");
                             gp.player.water += 1;
+                            gp.player.money -= gp.waterPrice;
                         }
                     }
                     if(gp.ui.commandNum == 1){
                         if(gp.player.money >= gp.milkPrice){
                             System.out.println("Buy milk");
                             gp.player.milk += 1;
+                            gp.player.money -= gp.milkPrice;
                         }
                     }
                     if(gp.ui.commandNum == 2){
                         if(gp.player.money >= gp.seedPrice){
                             System.out.println("Buy seed");
                             gp.player.seed += 1;
+                            gp.player.money -= gp.seedPrice;
                         }
                     }
                     if(gp.ui.commandNum == 3){
                         if(gp.player.money >= gp.cornPrice){
                             System.out.println("Buy corn");
                             gp.player.corn += 1;
+                            gp.player.money -= gp.cornPrice;
                         }
                     }
 
@@ -231,32 +293,41 @@ public class KeyHandler implements KeyListener{
 
                     if(gp.ui.commandNum == 0){
                         // Controllo se in cesta ci sono abbastanza oggetti, li tolgo dalla cesta, e li do al personaggio
-                        if(gp.player.money >= gp.waterPrice){
-                            System.out.println("Buy water");
-                            gp.player.water += 1;
+                        if(gp.player.water > 0){
+                            System.out.println("Sell water");
+                            gp.player.water -= 1;
+                            gp.player.money += gp.waterPrice;
                         }
                     }
                     if(gp.ui.commandNum == 1){
-                        if(gp.player.money >= gp.milkPrice){
-                            System.out.println("Buy milk");
-                            gp.player.milk += 1;
+                        if(gp.player.milk > 0){
+                            System.out.println("Sell milk");
+                            gp.player.milk -= 1;
+                            gp.player.money += gp.milkPrice;
                         }
                     }
                     if(gp.ui.commandNum == 2){
-                        if(gp.player.money >= gp.seedPrice){
-                            System.out.println("Buy seed");
-                            gp.player.seed += 1;
+                        if(gp.player.seed > 0){
+                            System.out.println("Sell seed");
+                            gp.player.seed -= 1;
+                            gp.player.money += gp.seedPrice;
                         }
                     }
                     if(gp.ui.commandNum == 3){
-                        if(gp.player.money >= gp.cornPrice){
-                            System.out.println("Buy corn");
-                            gp.player.corn += 1;
+                        if(gp.player.corn > 0){
+                            System.out.println("Sell corn");
+                            gp.player.corn -= 1;
+                            gp.player.money += gp.cornPrice;
                         }
                     }
 
                     //System.out.println("Select item");
                 }
+            
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.playState;
+            }
+        }else if(gp.gameState == gp.cornState){
             
             if(code == KeyEvent.VK_ENTER){
                 gp.gameState = gp.playState;
@@ -281,6 +352,15 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = false;
+        }
+        if(code == KeyEvent.VK_F){
+            fPressed = false;
+        }
+        if(code == KeyEvent.VK_G){
+            gPressed = false;
+        }
+        if(code == KeyEvent.VK_M){
+            mPressed = false;
         }
     }
     

@@ -15,6 +15,7 @@ public class EventHandler {
     GamePanel gp;
     Rectangle eventRect;
     int eventRectDefaultX, eventRectDefaultY;
+    int cornX, cornY;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -75,6 +76,20 @@ public class EventHandler {
         if(hit(12, 33, "any")){
             enterShop(gp.shopState);
         }
+        /*
+        if(hit(38, 9, "left")){
+        plantCorn(gp.cornState, 38, 9);
+        }
+        if(hit(37, 9, "right")){
+        plantCorn(gp.cornState, 37, 9);
+        }
+        if(hit(38, 10, "left")){
+        plantCorn(gp.cornState, 38, 10);
+        }
+        if(hit(37, 10, "right")){
+        plantCorn(gp.cornState, 37, 10);
+        }
+        */
         
     }
     
@@ -90,7 +105,6 @@ public class EventHandler {
         if(gp.player.solidArea.intersects(eventRect)){
             if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")){
                 hit = true;
-                System.out.println("hit true");
             }
         }
         
@@ -102,15 +116,20 @@ public class EventHandler {
         return hit;
     }
     
-    public void enterShop(int gameState){
-        
-        System.out.println("enter to shop");
+    public void plantCorn(int gameState, int x, int y){
         
         if(gp.keyH.enterPressed){
-            
-            System.out.println("shop");
             gp.gameState = gameState;
-            
+            cornX = x;
+            cornY = y;
+        }
+        
+    }
+    
+    public void enterShop(int gameState){
+        
+        if(gp.keyH.enterPressed){
+            gp.gameState = gameState;
         }
         
     }

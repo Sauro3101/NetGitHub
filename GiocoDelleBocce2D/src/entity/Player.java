@@ -20,6 +20,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public String playerColor = "red";
+    public int objectCollidedIndex = 999;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         
@@ -49,8 +50,10 @@ public class Player extends Entity {
         direction = "down";
         
         // Inizialize water and money
-        water = 0;
+        water = 3;
+        corn = 3;
         money = 0;
+        seed = 3;
     }
     
     public void getPlayerImage(){
@@ -133,6 +136,8 @@ public class Player extends Entity {
     
     public void pickUpObject(int i){
         
+        objectCollidedIndex = i;
+        
         if(i != 999){
             
             String objectName = gp.obj[i].name;
@@ -140,6 +145,18 @@ public class Player extends Entity {
             switch(objectName){
                 case "Chest":
                     gp.gameState = gp.chestState;
+                    break;
+                case "field":
+                    System.out.println("field collision");
+                    if(gp.keyH.enterPressed){
+                        gp.gameState = gp.cornState;
+                    }
+                    break;
+                case "corn4":
+                    System.out.println("corn collision");
+                    if(gp.keyH.enterPressed){
+                        gp.gameState = gp.cornState;
+                    }
                     break;
             }
         }
@@ -153,6 +170,24 @@ public class Player extends Entity {
             if(gp.keyH.enterPressed){
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].chooseDialogue();
+            }
+            if(gp.keyH.gPressed){
+                if(gp.npc[i].water == 0 && gp.player.water > 0){
+                    gp.npc[i].water++;
+                    gp.player.water--;
+                }
+            }
+            if(gp.keyH.fPressed){
+                if(gp.npc[i].corn == 0 && gp.player.corn > 0){
+                    gp.npc[i].corn++;
+                    gp.player.corn--;
+                }
+            }
+            if(gp.keyH.mPressed){
+                if(gp.npc[i].milk > 0){
+                    gp.npc[i].milk -= 1;
+                    gp.player.milk += 1;
+                }
             }
             
         }

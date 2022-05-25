@@ -39,7 +39,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldHeight = tileSize * maxWorldRow;
     
     //FPS
-    int FPS = 60;
+    public int FPS = 60;
+    public long cont;
     
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
@@ -63,6 +64,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int dialogueState = 3;
     public final int shopState = 4;
     public final int chestState = 5;
+    public final int cornState = 6;
+    public final int inventaryState = 7;
     
     // Shop items prices
     public final int waterPrice = 3;
@@ -126,6 +129,7 @@ public class GamePanel extends JPanel implements Runnable{
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
+                cont = timer;
             }
             
         }
@@ -141,7 +145,11 @@ public class GamePanel extends JPanel implements Runnable{
             // NPC
             for(int i = 0; i < npc.length; i++){
                 if(npc[i] != null){
-                    npc[i].update();
+                    if(npc[i].milk > 0){
+                        //npc stop when milk ready
+                    }else{
+                        npc[i].update();
+                    }
                 }
             }
             

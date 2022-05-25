@@ -92,8 +92,8 @@ public class UI {
         }
         // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){
-            drawPlayerMoney();
             drawDialogueScreen();
+            drawPlayerMoney();
         }
         // SHOP STATE
         if(gp.gameState == gp.shopState){
@@ -103,8 +103,39 @@ public class UI {
         // CHEST STATE
         if(gp.gameState == gp.chestState){
             drawChestScreen();
+            drawPlayerMoney();
+        }
+        // INVENTARY STATE
+        if(gp.gameState == gp.inventaryState){
+            drawInventaryScreen();
+            drawPlayerMoney();
+        }
+        // CORN STATE
+        if(gp.gameState == gp.cornState){
+            drawCornScreen(gp.eventH.cornX, gp.eventH.cornY);
+            drawPlayerMoney();
         }
         
+        
+    }
+    
+    public void drawCornScreen(int x, int y){
+        
+        x = x;
+        y = y;
+        
+        if(gp.obj[gp.player.objectCollidedIndex].name.equalsIgnoreCase("field")){
+            if(gp.player.seed > 0){
+                gp.obj[gp.player.objectCollidedIndex].name = "corn1";
+                gp.obj[gp.player.objectCollidedIndex].startGrowing();
+                gp.player.seed -= 1;
+            }
+        }else if(gp.obj[gp.player.objectCollidedIndex].name.equalsIgnoreCase("corn4")){
+            gp.obj[gp.player.objectCollidedIndex].name = "field";
+            gp.player.corn += 1;
+        }
+        
+        gp.gameState = gp.playState;
         
     }
     
@@ -114,10 +145,10 @@ public class UI {
         int y = gp.tileSize/2;
         
         // Draw current money
-        g2.setFont(maruMonica);
         g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        g2.drawString(gp.player.money + "$", 74, 65);
         g2.drawImage(coin, x, y, null);
-        g2.drawString("$", 74, 65);
         
     }
     
@@ -158,14 +189,24 @@ public class UI {
                 g2.drawString(">", x-gp.tileSize, y);
             }
 
-            text = "LOAD GAME";
+            text = "INSTRUCTIONS";
             x = getCenterX(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 1){
                 g2.drawString(">", x-gp.tileSize, y);
             }
-
+            
+            /*
+            text = "LOAD GAME";
+            x = getCenterX(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+            }
+            */
+            
             text = "QUIT";
             x = getCenterX(text);
             y += gp.tileSize;
@@ -216,16 +257,110 @@ public class UI {
                 g2.drawString(">", x-gp.tileSize, y);
             }
             
+        }else if(titleScreenState == 2){
+            
+            g2.setColor(new Color(20, 150, 50));
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+            // TITLE NAME
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+            String text = "INSTRUCTIONS";
+            int x = getCenterX(text);
+            int y = gp.tileSize*2;
+            
+
+            // SHADOW
+            g2.setColor(Color.black);
+            g2.drawString(text, x+5, y+5);
+
+            // MAIN TEXT
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
+
+            // MENU
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+
+            text = "W, A, S, D or direction arrow for moving player";
+            x = getCenterX(text);
+            y += gp.tileSize*1.7;
+            g2.drawString(text, x, y);
+
+            text = "I to open inventory";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "ENTER next to cow for dialogue";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "ENTER next to empty field for plant seed";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "ENTER next to grown corn for pick up";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "F next to cow for feed cow";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "G next to cow for water cow";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "M next to cow for pick up milk";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "P to pause";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+
+            text = "ENTER or ESC to exit dialogue and inventory";
+            x = getCenterX(text);
+            y += gp.tileSize*0.7;
+            g2.drawString(text, x, y);
+            
+            text = "QUIT";
+            x = getCenterX(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+            
         }
     }
     
     public void drawPauseScreen(){
         
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
-        String text = "PAUSED";
-        int x = getCenterX(text);
-        int y = gp.screenHeight/2;
+        // Window
+        int x = gp.tileSize*2;
+        int y = gp.screenHeight/2 - gp.tileSize*3;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*6;
         
+        drawItemWindow(x, y, width, height);
+        
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
+        String text = "PAUSED";
+        x = getCenterX(text);
+        y = gp.screenHeight/2 - gp.tileSize*1;
+        g2.drawString(text, x, y);
+        
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+        text = "PRESS ENTER TO RETURN TO MAIN MENU";
+        x = getCenterX(text);
+        y = gp.screenHeight/2 + gp.tileSize*1;
         g2.drawString(text, x, y);
     }
     
@@ -299,6 +434,50 @@ public class UI {
         if(commandNum == 3){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        
+        
+    }
+    
+    public void drawInventaryScreen(){
+        
+        // Window
+        int x = gp.tileSize*2;
+        int y = gp.screenHeight/2 - gp.tileSize*3;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*6;
+        
+        drawItemWindow(x, y, width, height);
+        
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize*3;
+        y += gp.tileSize*1.3;
+        g2.drawString("Water: ", x, y);
+        g2.drawImage(water, x+gp.tileSize*3, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        g2.drawString("x " + gp.player.water, x+gp.tileSize*5, y);
+        /*if(commandNum == 0){
+        g2.drawString("<", x+gp.tileSize*7, y);
+        }*/
+        y += 60;
+        g2.drawString("Milk: ", x, y);
+        g2.drawImage(milk, x+gp.tileSize*3, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        g2.drawString("x " + gp.player.milk, x+gp.tileSize*5, y);
+        /*if(commandNum == 1){
+        g2.drawString("<", x+gp.tileSize*7, y);
+        }*/
+        y += 60;
+        g2.drawString("Seed: ", x, y);
+        g2.drawImage(seed, x+gp.tileSize*3, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        g2.drawString("x " + gp.player.seed, x+gp.tileSize*5, y);
+        /*if(commandNum == 2){
+        g2.drawString("<", x+gp.tileSize*7, y);
+        }*/
+        y += 60;
+        g2.drawString("Corn: ", x, y);
+        g2.drawImage(corn, x+gp.tileSize*3, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        g2.drawString("x " + gp.player.corn, x+gp.tileSize*5, y);
+        /*if(commandNum == 3){
+        g2.drawString("<", x+gp.tileSize*7, y);
+        }*/
         
         
     }

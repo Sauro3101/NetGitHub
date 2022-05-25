@@ -66,6 +66,8 @@ public class CollisionChecker {
                     entity.collisionOn = true;
                 }
                 break;
+            case "stop":
+                break;
         }
         
     }
@@ -91,7 +93,7 @@ public class CollisionChecker {
                         entity.solidArea.y -=entity.speed;
                         if(entity.solidArea.intersects(gp.obj[i].solidArea)){
                                 
-                            System.out.println("up collision!");
+                            //System.out.println("up collision!");
                             
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
@@ -106,7 +108,7 @@ public class CollisionChecker {
                         entity.solidArea.y +=entity.speed;
                         if(entity.solidArea.intersects(gp.obj[i].solidArea)){
                                 
-                            System.out.println("down collision!");
+                            //System.out.println("down collision!");
                             
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
@@ -121,7 +123,7 @@ public class CollisionChecker {
                         entity.solidArea.x -=entity.speed;
                         if(entity.solidArea.intersects(gp.obj[i].solidArea)){
                                 
-                            System.out.println("left collision!");
+                            //System.out.println("left collision!");
                             
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
@@ -136,7 +138,7 @@ public class CollisionChecker {
                         entity.solidArea.x +=entity.speed;
                         if(entity.solidArea.intersects(gp.obj[i].solidArea)){
                                 
-                            System.out.println("right collision!");
+                            //System.out.println("right collision!");
                             
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;

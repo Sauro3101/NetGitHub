@@ -12,6 +12,8 @@ import main.GamePanel;
  * @author Greta
  */
 public class Cow extends Entity{
+    
+    public long cont = 0;
 
     public Cow(GamePanel gp) {
         super(gp);
@@ -52,7 +54,19 @@ public class Cow extends Entity{
         
         actionLockerCounter++;
         
+        if(water > 0 && corn > 0){
+            cont += 1000000000/gp.FPS;
+            if(cont >= (1000000000/gp.FPS)*600){
+                cont = 0;
+                milk += 1;
+                water -= 1;
+                corn -= 1;
+            }
+        }
+        
         if(actionLockerCounter == 100){
+
+
 
             Random random = new Random();
             int i = random.nextInt(100)+1;
@@ -66,9 +80,9 @@ public class Cow extends Entity{
             }else if(i > 75 && i <= 100){
                 direction = "right";
             }
-            
+
             actionLockerCounter = 0;
-            
+
         }
         
     }

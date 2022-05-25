@@ -28,21 +28,21 @@ public class AssetSetter {
         gp.obj[0].worldX = gp.tileSize*10;
         gp.obj[0].worldY = gp.tileSize*8;
         
-        gp.obj[5] = new OBJ_Field();
-        gp.obj[5].worldX = gp.tileSize*38;
-        gp.obj[5].worldY = gp.tileSize*9;
+        gp.obj[1] = new OBJ_Field();
+        gp.obj[1].worldX = gp.tileSize*38;
+        gp.obj[1].worldY = gp.tileSize*9;
         
-        gp.obj[6] = new OBJ_Field();
-        gp.obj[6].worldX = gp.tileSize*37;
-        gp.obj[6].worldY = gp.tileSize*9;
+        gp.obj[2] = new OBJ_Field();
+        gp.obj[2].worldX = gp.tileSize*37;
+        gp.obj[2].worldY = gp.tileSize*9;
         
-        gp.obj[7] = new OBJ_Field();
-        gp.obj[7].worldX = gp.tileSize*38;
-        gp.obj[7].worldY = gp.tileSize*10;
+        gp.obj[3] = new OBJ_Field();
+        gp.obj[3].worldX = gp.tileSize*38;
+        gp.obj[3].worldY = gp.tileSize*10;
         
-        gp.obj[8] = new OBJ_Field();
-        gp.obj[8].worldX = gp.tileSize*37;
-        gp.obj[8].worldY = gp.tileSize*10;
+        gp.obj[4] = new OBJ_Field();
+        gp.obj[4].worldX = gp.tileSize*37;
+        gp.obj[4].worldY = gp.tileSize*10;
         
         /*gp.obj[5] = new OBJ_Letter_S();
         gp.obj[5].worldX = gp.tileSize*9;
