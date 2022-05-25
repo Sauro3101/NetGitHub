@@ -68,10 +68,11 @@ public class AssetSetter {
         gp.npc[0].worldX = gp.tileSize*29;
         gp.npc[0].worldY = gp.tileSize*17;
         
+        /*
         gp.npc[1] = new Cow(gp);
         gp.npc[1].worldX = gp.tileSize*31;
         gp.npc[1].worldY = gp.tileSize*14;
-        
+        */
     }
     
 }

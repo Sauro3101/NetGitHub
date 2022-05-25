@@ -36,7 +36,7 @@ public class SuperObject {
                 System.out.println("Cont: " + cont);
                 g2.drawImage(image2, screenX, screenY,  gp.tileSize, gp.tileSize, null);
                 cont += 1000000000/gp.FPS;
-                if(cont >= (1000000000/gp.FPS)*300){
+                if(cont >= (1000000000/gp.FPS)*100){
                     name = "corn2";
                     cont = 0;
                 }
@@ -45,7 +45,7 @@ public class SuperObject {
                 System.out.println("Cont: " + cont);
                 g2.drawImage(image3, screenX, screenY,  gp.tileSize, gp.tileSize, null);
                 cont += 1000000000/gp.FPS;
-                if(cont >= (1000000000/gp.FPS)*300){
+                if(cont >= (1000000000/gp.FPS)*100){
                     name = "corn3";
                     cont = 0;
                 }
@@ -53,7 +53,7 @@ public class SuperObject {
                 System.out.println("Cont: " + cont);
                 g2.drawImage(image4, screenX, screenY,  gp.tileSize, gp.tileSize, null);
                 cont += 1000000000/gp.FPS;
-                if(cont >= (1000000000/gp.FPS)*300){
+                if(cont >= (1000000000/gp.FPS)*100){
                     name = "corn4";
                     cont = 0;
                 }
