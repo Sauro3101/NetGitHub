@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ public class Entity {
     GamePanel gp;
     public int worldX, worldY;
     public int speed;
+    public String name = "";
     public String direction;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public int spriteCounter = 0;
@@ -37,6 +39,7 @@ public class Entity {
     public int corn;
     public int seed;
     public int money;
+    public long cont = 0;
     
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -150,7 +153,20 @@ public class Entity {
                 break;
             }
             
+            double oneScale = (double) gp.tileSize/(gp.FPS*20);
+            double milkBarValue = oneScale*cont;
+            
+            if(name.equals("cow")){
+                if(water > 0 && corn > 0){
+                    g2.setColor(new Color(35, 35, 35));
+                    g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+                    g2.setColor(new Color(128, 255, 255));
+                    g2.fillRect(screenX, screenY-15, (int) milkBarValue, 10);
+                }
+            }
+            
             g2.drawImage(image, screenX, screenY,  gp.tileSize, gp.tileSize, null);
+            
 
         }
     }

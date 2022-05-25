@@ -21,6 +21,7 @@ public class Player extends Entity {
     public final int screenY;
     public String playerColor = "red";
     public int objectCollidedIndex = 999;
+    int cont = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         
@@ -144,7 +145,9 @@ public class Player extends Entity {
             
             switch(objectName){
                 case "Chest":
-                    gp.gameState = gp.chestState;
+                    if(gp.keyH.enterPressed){
+                        gp.gameState = gp.chestState;
+                    }
                     break;
                 case "field":
                     System.out.println("field collision");
@@ -158,6 +161,11 @@ public class Player extends Entity {
                         gp.gameState = gp.cornState;
                     }
                     break;
+                case "shop":
+                    System.out.println("shop collision");
+                    if(gp.keyH.enterPressed){
+                        gp.gameState = gp.shopState;
+                    }
             }
         }
         
@@ -165,29 +173,42 @@ public class Player extends Entity {
     
     public void interactNPC(int i){
         
+        
+        cont++;
         if(i != 999){
             //System.out.println("NPC hitten");
             if(gp.keyH.enterPressed){
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].chooseDialogue();
             }
-            if(gp.keyH.gPressed){
+            if(gp.keyH.gPressed && cont > 10){
+                cont = 0;
                 if(gp.npc[i].water == 0 && gp.player.water > 0){
+                    gp.ui.addMessage("You water the " + gp.npc[i].name + "!");
+                    gp.keyH.gPressed = false;
                     gp.npc[i].water++;
                     gp.player.water--;
-                }
+                }else
+                gp.ui.addMessage("You can't water the " + gp.npc[i].name + "!");
             }
-            if(gp.keyH.fPressed){
+            if(gp.keyH.fPressed && cont > 10){
+                cont = 0;
                 if(gp.npc[i].corn == 0 && gp.player.corn > 0){
+                    gp.ui.addMessage("You feed the " + gp.npc[i].name + "!");
+                    gp.keyH.fPressed = false;
                     gp.npc[i].corn++;
                     gp.player.corn--;
-                }
+                }else
+                gp.ui.addMessage("You can't feed the " + gp.npc[i].name + "!");
             }
-            if(gp.keyH.mPressed){
+            if(gp.keyH.mPressed && cont > 10){
+                cont = 0;
                 if(gp.npc[i].milk > 0){
+                    gp.ui.addMessage("You pick 1 milk!");
                     gp.npc[i].milk -= 1;
                     gp.player.milk += 1;
-                }
+                }else
+                gp.ui.addMessage("Milk isn't ready!");
             }
             
         }

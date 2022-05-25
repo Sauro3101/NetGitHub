@@ -39,41 +39,7 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
                     gp.ui.commandNum--;
                     if(gp.ui.commandNum < 0){
-                        gp.ui.commandNum = 2;
-                    }
-                    //System.out.println("menu su");
-                }
-                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-                    gp.ui.commandNum++;
-                    if(gp.ui.commandNum > 2){
-                        gp.ui.commandNum = 0;
-                    }
-                    //System.out.println("menu giu");
-                }
-                if(code == KeyEvent.VK_ENTER){
-
-                    if(gp.ui.commandNum == 0){
-                        gp.ui.titleScreenState = 1;
-                    }
-                    if(gp.ui.commandNum == 1){
-                        // Add later saving and load
-                        // VIEW INSTRUCTION SCREEN
-                        gp.ui.commandNum = 0;
-                        gp.ui.titleScreenState = 2;
-                    }
-                    if(gp.ui.commandNum == 2){
-                        System.exit(0);
-                    }
-
-                    //System.out.println("Select item");
-                }
-                
-            }else if(gp.ui.titleScreenState == 1){
-            
-                if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-                    gp.ui.commandNum--;
-                    if(gp.ui.commandNum < 0){
-                        gp.ui.commandNum = 2;
+                        gp.ui.commandNum = 3;
                     }
                     //System.out.println("menu su");
                 }
@@ -87,24 +53,162 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_ENTER){
 
                     if(gp.ui.commandNum == 0){
-                        System.out.println("Color red");
-                        gp.player.playerColor = "red";
+                        gp.ui.titleScreenState = 1;
+                    }
+                    if(gp.ui.commandNum == 1){
+                        gp.ui.commandNum = 0;
+                        gp.ui.titleScreenState = 3;
+                    }
+                    if(gp.ui.commandNum == 2){
+                        // Add later saving and load
+                        // VIEW INSTRUCTION SCREEN
+                        gp.ui.commandNum = 0;
+                        gp.ui.titleScreenState = 2;
+                    }
+                    if(gp.ui.commandNum == 3){
+                        System.exit(0);
+                        gp.gd.uploadData();
+                        for(int i = 0; i < gp.saves.size(); i++){
+                            GameData gd = (GameData) gp.saves.get(i);
+                            if(gd.name.equalsIgnoreCase(gp.gd.name)){
+                                gp.saves.set(i, gd);
+                                gp.uTool.saveFile(gp);
+                            }
+                        }
+                    }
+
+                    //System.out.println("Select item");
+                }
+                
+            }else if(gp.ui.titleScreenState == 1){
+                
+                /*
+                if(code >= KeyEvent.VK_0 && code <= KeyEvent.VK_Z){
+                    gp.saveName.concat(String.valueOf(code));
+                }
+                */
+                
+                System.out.println("nome: " + gp.saveName);
+                
+                if(code == KeyEvent.VK_Q){
+                    gp.saveName = gp.saveName.concat("q");
+                }
+                if(code == KeyEvent.VK_W){
+                    gp.saveName = gp.saveName.concat("w");
+                }
+                if(code == KeyEvent.VK_E){
+                    gp.saveName = gp.saveName.concat("e");
+                }
+                if(code == KeyEvent.VK_R){
+                    gp.saveName = gp.saveName.concat("r");
+                }
+                if(code == KeyEvent.VK_T){
+                    gp.saveName = gp.saveName.concat("t");
+                }
+                if(code == KeyEvent.VK_Y){
+                    gp.saveName = gp.saveName.concat("y");
+                }
+                if(code == KeyEvent.VK_U){
+                    gp.saveName = gp.saveName.concat("u");
+                }
+                if(code == KeyEvent.VK_I){
+                    gp.saveName = gp.saveName.concat("i");
+                }
+                if(code == KeyEvent.VK_O){
+                    gp.saveName = gp.saveName.concat("o");
+                }
+                if(code == KeyEvent.VK_P){
+                    gp.saveName = gp.saveName.concat("p");
+                }
+                if(code == KeyEvent.VK_A){
+                    gp.saveName = gp.saveName.concat("a");
+                }
+                if(code == KeyEvent.VK_S){
+                    gp.saveName = gp.saveName.concat("s");
+                }
+                if(code == KeyEvent.VK_D){
+                    gp.saveName = gp.saveName.concat("d");
+                }
+                if(code == KeyEvent.VK_F){
+                    gp.saveName = gp.saveName.concat("f");
+                }
+                if(code == KeyEvent.VK_G){
+                    gp.saveName = gp.saveName.concat("g");
+                }
+                if(code == KeyEvent.VK_H){
+                    gp.saveName = gp.saveName.concat("h");
+                }
+                if(code == KeyEvent.VK_J){
+                    gp.saveName = gp.saveName.concat("j");
+                }
+                if(code == KeyEvent.VK_K){
+                    gp.saveName = gp.saveName.concat("k");
+                }
+                if(code == KeyEvent.VK_L){
+                    gp.saveName = gp.saveName.concat("l");
+                }
+                if(code == KeyEvent.VK_Z){
+                    gp.saveName = gp.saveName.concat("z");
+                }
+                if(code == KeyEvent.VK_X){
+                    gp.saveName = gp.saveName.concat("x");
+                }
+                if(code == KeyEvent.VK_C){
+                    gp.saveName = gp.saveName.concat("c");
+                }
+                if(code == KeyEvent.VK_V){
+                    gp.saveName = gp.saveName.concat("v");
+                }
+                if(code == KeyEvent.VK_B){
+                    gp.saveName = gp.saveName.concat("b");
+                }
+                if(code == KeyEvent.VK_N){
+                    gp.saveName = gp.saveName.concat("n");
+                }
+                if(code == KeyEvent.VK_M){
+                    gp.saveName = gp.saveName.concat("m");
+                }
+                
+                if(code == KeyEvent.VK_MINUS){
+                    gp.saveName = gp.saveName.concat("-");
+                }
+                if(code == KeyEvent.VK_MINUS && code == KeyEvent.VK_SHIFT){
+                    gp.saveName = gp.saveName.concat("_");
+                }
+                if(code == KeyEvent.VK_BACK_SPACE){
+                    if(gp.saveName.length() > 1){
+                        gp.saveName = gp.saveName.substring(0, gp.saveName.length()-1);
+                        System.out.println("BACKSPACE");
+                    }
+                }
+                if(code == KeyEvent.VK_SPACE){
+                    gp.saveName = gp.saveName.concat(" ");
+                }
+            
+                if(code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 1;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 1){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
                         gp.gameState = gp.playState;
+                        gp.gd = new GameData(gp, gp.saveName);
+                        gp.gd.uploadData();
+                        gp.saves.add(gp.gd);
                         gp.ui.commandNum = 0;
                     }
                     if(gp.ui.commandNum == 1){
-                        System.out.println("Color blue");
-                        gp.player.playerColor = "blue";
-                        gp.gameState = gp.playState;
-                        gp.ui.commandNum = 0;
-                    }
-                    if(gp.ui.commandNum == 2){
-                        System.out.println("Color green");
-                        gp.player.playerColor = "green";
-                        gp.gameState = gp.playState;
-                        gp.ui.commandNum = 0;
-                    }
-                    if(gp.ui.commandNum == 3){
                         gp.ui.titleScreenState = 0;
                         gp.ui.commandNum = 0;
                     }
@@ -112,7 +216,8 @@ public class KeyHandler implements KeyListener{
                     //System.out.println("Select item");
                 }
                 
-                gp.player.getPlayerImage();
+                //gp.player.getPlayerImage();
+                
             }else if(gp.ui.titleScreenState == 2){
             
                 if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_ESCAPE){
@@ -126,6 +231,63 @@ public class KeyHandler implements KeyListener{
                 }
                 
                 gp.player.getPlayerImage();
+            }else if(gp.ui.titleScreenState == 3){
+                
+                if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                    gp.ui.commandNum--;
+                    if(gp.ui.commandNum < 0){
+                        gp.ui.commandNum = 4;
+                    }
+                    //System.out.println("menu su");
+                }
+                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                    gp.ui.commandNum++;
+                    if(gp.ui.commandNum > 4){
+                        gp.ui.commandNum = 0;
+                    }
+                    //System.out.println("menu giu");
+                }
+                if(code == KeyEvent.VK_ENTER){
+
+                    if(gp.ui.commandNum == 0){
+                        // SLOT 1
+                        gp.gd = (GameData) gp.saves.get(0);
+                        if(!gp.gd.name.equalsIgnoreCase("")){
+                            gp.gd.downloadData();
+                            gp.gameState = gp.playState;
+                        }
+                    }
+                    if(gp.ui.commandNum == 1){
+                        // SLOT 2
+                        gp.gd = (GameData) gp.saves.get(0);
+                        if(!gp.gd.name.equalsIgnoreCase("")){
+                            gp.gd.downloadData();
+                            gp.gameState = gp.playState;
+                        }
+                    }
+                    if(gp.ui.commandNum == 2){
+                        // SLOT 3
+                        gp.gd = (GameData) gp.saves.get(0);
+                        if(!gp.gd.name.equalsIgnoreCase("")){
+                            gp.gd.downloadData();
+                            gp.gameState = gp.playState;
+                        }
+                    }
+                    if(gp.ui.commandNum == 3){
+                        // SLOT 4
+                        gp.gd = (GameData) gp.saves.get(0);
+                        if(!gp.gd.name.equalsIgnoreCase("")){
+                            gp.gd.downloadData();
+                            gp.gameState = gp.playState;
+                        }
+                    }
+                    if(gp.ui.commandNum == 4){
+                        gp.ui.commandNum = 1;
+                        gp.ui.titleScreenState = 1;
+                    }
+
+                    //System.out.println("Select item");
+                }
             }
             
         }else if(gp.gameState == gp.playState){
@@ -199,15 +361,42 @@ public class KeyHandler implements KeyListener{
                 gp.gameState = gp.playState;
 
                 //System.out.println("Game not paused");
+            }if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0){
+                    gp.ui.commandNum = 1;
+                }
+                //System.out.println("menu su");
+            }
+            if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 1){
+                    gp.ui.commandNum = 0;
+                }
+                //System.out.println("menu giu");
             }
             if(code == KeyEvent.VK_ENTER){
 
                 if(gp.ui.commandNum == 0){
+                    gp.gameState = gp.playState;
+                }
+                if(gp.ui.commandNum == 1){
+                    gp.gd.uploadData();
+                    if(gp.saves.size() > 0){
+                        for(int i = 0; i < gp.saves.size(); i++){
+                            GameData gd = (GameData) gp.saves.get(i);
+                            if(gd.name.equalsIgnoreCase(gp.gd.name)){
+                                gp.saves.set(i, gd);
+                                gp.uTool.saveFile(gp);
+                            }
+                        }
+                    }
                     gp.gameState = gp.titleState;
                     gp.ui.titleScreenState = 0;
+                    gp.ui.commandNum = 0;
                 }
 
-                //System.out.println("Game not paused");
+                //System.out.println("Select item");
             }
             
         }else if(gp.gameState == gp.dialogueState){
@@ -223,108 +412,124 @@ public class KeyHandler implements KeyListener{
         }else if(gp.gameState == gp.shopState){
             
             if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-                    gp.ui.commandNum--;
-                    if(gp.ui.commandNum < 0){
-                        gp.ui.commandNum = 3;
-                    }
-                    //System.out.println("menu su");
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0){
+                    gp.ui.commandNum = 3;
                 }
-                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-                    gp.ui.commandNum++;
-                    if(gp.ui.commandNum > 3){
-                        gp.ui.commandNum = 0;
-                    }
-                    //System.out.println("menu giu");
+                //System.out.println("menu su");
+            }
+            if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 3){
+                    gp.ui.commandNum = 0;
                 }
-                if(code == KeyEvent.VK_ENTER){
-
-                    if(gp.ui.commandNum == 0){
-                        if(gp.player.money >= gp.waterPrice){
-                            System.out.println("Buy water");
-                            gp.player.water += 1;
-                            gp.player.money -= gp.waterPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 1){
-                        if(gp.player.money >= gp.milkPrice){
-                            System.out.println("Buy milk");
-                            gp.player.milk += 1;
-                            gp.player.money -= gp.milkPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 2){
-                        if(gp.player.money >= gp.seedPrice){
-                            System.out.println("Buy seed");
-                            gp.player.seed += 1;
-                            gp.player.money -= gp.seedPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 3){
-                        if(gp.player.money >= gp.cornPrice){
-                            System.out.println("Buy corn");
-                            gp.player.corn += 1;
-                            gp.player.money -= gp.cornPrice;
-                        }
-                    }
-
-                    //System.out.println("Select item");
-                }
-            
+                //System.out.println("menu giu");
+            }
             if(code == KeyEvent.VK_ENTER){
+
+                if(gp.ui.commandNum == 0){
+                    if(gp.player.money >= gp.waterPrice){
+                        System.out.println("Buy water");
+                        gp.ui.addMessage("Water +1!");
+                        gp.player.water += 1;
+                        gp.player.money -= gp.waterPrice;
+                    }else
+                    gp.ui.addMessage("You don't have enought money!");
+                }
+                if(gp.ui.commandNum == 1){
+                    if(gp.player.money >= gp.milkPrice){
+                        System.out.println("Buy milk");
+                        gp.ui.addMessage("Milk +1!");
+                        gp.player.milk += 1;
+                        gp.player.money -= gp.milkPrice;
+                    }else
+                    gp.ui.addMessage("You don't have enought money!");
+                }
+                if(gp.ui.commandNum == 2){
+                    if(gp.player.money >= gp.seedPrice){
+                        System.out.println("Buy seed");
+                        gp.ui.addMessage("Seed +1!");
+                        gp.player.seed += 1;
+                        gp.player.money -= gp.seedPrice;
+                    }else
+                    gp.ui.addMessage("You don't have enought money!");
+                }
+                if(gp.ui.commandNum == 3){
+                    if(gp.player.money >= gp.cornPrice){
+                        System.out.println("Buy corn");
+                        gp.ui.addMessage("Corn +1!");
+                        gp.player.corn += 1;
+                        gp.player.money -= gp.cornPrice;
+                    }else
+                    gp.ui.addMessage("You don't have enought money!");
+                }
+
+                //System.out.println("Select item");
+            }
+            
+            if(code == KeyEvent.VK_ESCAPE){
                 gp.gameState = gp.playState;
             }
         }else if(gp.gameState == gp.chestState){
             
             if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-                    gp.ui.commandNum--;
-                    if(gp.ui.commandNum < 0){
-                        gp.ui.commandNum = 3;
-                    }
-                    //System.out.println("menu su");
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0){
+                    gp.ui.commandNum = 3;
                 }
-                if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-                    gp.ui.commandNum++;
-                    if(gp.ui.commandNum > 3){
-                        gp.ui.commandNum = 0;
-                    }
-                    //System.out.println("menu giu");
+                //System.out.println("menu su");
+            }
+            if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 3){
+                    gp.ui.commandNum = 0;
                 }
-                if(code == KeyEvent.VK_ENTER){
-
-                    if(gp.ui.commandNum == 0){
-                        // Controllo se in cesta ci sono abbastanza oggetti, li tolgo dalla cesta, e li do al personaggio
-                        if(gp.player.water > 0){
-                            System.out.println("Sell water");
-                            gp.player.water -= 1;
-                            gp.player.money += gp.waterPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 1){
-                        if(gp.player.milk > 0){
-                            System.out.println("Sell milk");
-                            gp.player.milk -= 1;
-                            gp.player.money += gp.milkPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 2){
-                        if(gp.player.seed > 0){
-                            System.out.println("Sell seed");
-                            gp.player.seed -= 1;
-                            gp.player.money += gp.seedPrice;
-                        }
-                    }
-                    if(gp.ui.commandNum == 3){
-                        if(gp.player.corn > 0){
-                            System.out.println("Sell corn");
-                            gp.player.corn -= 1;
-                            gp.player.money += gp.cornPrice;
-                        }
-                    }
-
-                    //System.out.println("Select item");
-                }
-            
+                //System.out.println("menu giu");
+            }
             if(code == KeyEvent.VK_ENTER){
+
+                if(gp.ui.commandNum == 0){
+                    // Controllo se in cesta ci sono abbastanza oggetti, li tolgo dalla cesta, e li do al personaggio
+                    if(gp.player.water > 0){
+                        System.out.println("Sell water");
+                        gp.ui.addMessage("Water -1!");
+                        gp.player.water -= 1;
+                        gp.player.money += gp.waterPrice;
+                    }else
+                    gp.ui.addMessage("You have 0 water!");
+                }
+                if(gp.ui.commandNum == 1){
+                    if(gp.player.milk > 0){
+                        System.out.println("Sell milk");
+                        gp.ui.addMessage("Milk -1!");
+                        gp.player.milk -= 1;
+                        gp.player.money += gp.milkPrice;
+                    }else
+                    gp.ui.addMessage("You have 0 milk!");
+                }
+                if(gp.ui.commandNum == 2){
+                    if(gp.player.seed > 0){
+                        System.out.println("Sell seed");
+                        gp.ui.addMessage("Seed -1!");
+                        gp.player.seed -= 1;
+                        gp.player.money += gp.seedPrice;
+                    }else
+                    gp.ui.addMessage("You have 0 seed!");
+                }
+                if(gp.ui.commandNum == 3){
+                    if(gp.player.corn > 0){
+                        System.out.println("Sell corn");
+                        gp.ui.addMessage("Corn -1!");
+                        gp.player.corn -= 1;
+                        gp.player.money += gp.cornPrice;
+                    }else
+                    gp.ui.addMessage("You have 0 corn!");
+                }
+
+                //System.out.println("Select item");
+            }
+
+            if(code == KeyEvent.VK_ESCAPE){
                 gp.gameState = gp.playState;
             }
         }else if(gp.gameState == gp.cornState){

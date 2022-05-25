@@ -13,12 +13,13 @@ import main.GamePanel;
  */
 public class Cow extends Entity{
     
-    public long cont = 0;
 
     public Cow(GamePanel gp) {
         super(gp);
         water = 0;
         corn = 0;
+        milk = 0;
+        name = "cow";
         
         direction = "down";
         speed = 1;
@@ -55,8 +56,8 @@ public class Cow extends Entity{
         actionLockerCounter++;
         
         if(water > 0 && corn > 0){
-            cont += 1000000000/gp.FPS;
-            if(cont >= (1000000000/gp.FPS)*6000){
+            cont += 1;
+            if(cont >= gp.FPS*20){
                 cont = 0;
                 milk += 1;
                 water -= 1;

@@ -9,6 +9,7 @@ import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Field;
 import object.OBJ_Key;
+import object.OBJ_Shop;
 
 /**
  *
@@ -44,19 +45,28 @@ public class AssetSetter {
         gp.obj[4].worldX = gp.tileSize*37;
         gp.obj[4].worldY = gp.tileSize*10;
         
-        /*gp.obj[5] = new OBJ_Letter_S();
+        gp.obj[5] = new OBJ_Shop();
+        gp.obj[5].worldX = gp.tileSize*10;
+        gp.obj[5].worldY = gp.tileSize*31;
+        
+        gp.obj[6] = new OBJ_Shop();
+        gp.obj[6].worldX = gp.tileSize*10;
+        gp.obj[6].worldY = gp.tileSize*32;
+        
+        /*
+        gp.obj[5] = new OBJ_Letter(s);
         gp.obj[5].worldX = gp.tileSize*9;
         gp.obj[5].worldY = gp.tileSize*30;
         
-        gp.obj[6] = new OBJ_Letter_H();
+        gp.obj[6] = new OBJ_Letter(h);
         gp.obj[6].worldX = gp.tileSize*9;
         gp.obj[6].worldY = gp.tileSize*31;
         
-        gp.obj[7] = new OBJ_Letter_O();
+        gp.obj[7] = new OBJ_Letter(o);
         gp.obj[7].worldX = gp.tileSize*9;
         gp.obj[7].worldY = gp.tileSize*32;
         
-        gp.obj[8] = new OBJ_Letter_P();
+        gp.obj[8] = new OBJ_Letter(p);
         gp.obj[8].worldX = gp.tileSize*9;
         gp.obj[8].worldY = gp.tileSize*33;
         */

@@ -38,44 +38,46 @@ public class EventHandler {
             exitCowFence(gp.dialogueState);
         }
         if(hit(23, 12, "up")){
-            pickWater(gp.dialogueState);
+            pickWater();
         }
+        /*
         if(hit(10, 30, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(11, 30, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(12, 30, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(10, 31, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(11, 31, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(12, 31, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(10, 32, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(11, 32, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(12, 32, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(10, 33, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(11, 33, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
         if(hit(12, 33, "any")){
-            enterShop(gp.shopState);
+        enterShop(gp.shopState);
         }
+        */
         /*
         if(hit(38, 9, "left")){
         plantCorn(gp.cornState, 38, 9);
@@ -116,23 +118,25 @@ public class EventHandler {
         return hit;
     }
     
+    /*
     public void plantCorn(int gameState, int x, int y){
-        
-        if(gp.keyH.enterPressed){
-            gp.gameState = gameState;
-            cornX = x;
-            cornY = y;
-        }
-        
+    
+    if(gp.keyH.enterPressed){
+    gp.gameState = gameState;
+    cornX = x;
+    cornY = y;
+    }
+    
     }
     
     public void enterShop(int gameState){
-        
-        if(gp.keyH.enterPressed){
-            gp.gameState = gameState;
-        }
-        
+    
+    if(gp.keyH.enterPressed){
+    gp.gameState = gameState;
     }
+    
+    }
+    */
     
     public void enterCowFence(int gameState){
         
@@ -158,12 +162,11 @@ public class EventHandler {
         }
     }
     
-    public void pickWater(int gameState){
+    public void pickWater(){
         
         if(gp.keyH.enterPressed){
             
-            gp.gameState = gameState;
-            gp.ui.currentDialogue = "You pick 1 water.";
+            gp.ui.addMessage("You pick 1 water!");
             gp.player.water += 1;
         }
         

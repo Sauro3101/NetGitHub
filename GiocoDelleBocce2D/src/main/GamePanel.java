@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -74,6 +75,17 @@ public class GamePanel extends JPanel implements Runnable{
     public final int cornPrice = 6;
     //public final int applePrice = 10;
     
+    // Saving settings
+    public final int maxSaves = 4;
+    public ArrayList saves = new ArrayList();
+    
+    // SAVING INFOS
+    public String saveName = "";
+    // SAVING INFOS
+    
+    UtilityTool uTool = new UtilityTool();
+    GameData gd;
+    
     
     
     public GamePanel(){
@@ -106,6 +118,8 @@ public class GamePanel extends JPanel implements Runnable{
         long currentTime;
         long timer = 0;
         int drawCount = 0;
+        
+        saves = uTool.readFile();
         
         //GAME LOOP
         while(gameThread != null){
