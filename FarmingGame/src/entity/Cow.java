@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entity;
 
@@ -10,15 +9,17 @@ import main.GamePanel;
 
 /**
  *
- * @author Studente Turno B
+ * @author Greta
  */
-public class RealCow  extends Entity{
+public class Cow extends Entity{
     
 
-    public RealCow(GamePanel gp) {
+    public Cow(GamePanel gp) {
         super(gp);
-        weed = 0;
-        name = "pretty";
+        water = 0;
+        corn = 0;
+        milk = 0;
+        name = "cow";
         
         direction = "down";
         speed = 1;
@@ -42,11 +43,11 @@ public class RealCow  extends Entity{
     
     public void setDialogue(){
         
-        dialogues[0] = "You have to pay me!";
-        dialogues[1] = "I do everything you want!";
-        dialogues[2] = "Ohhh yess!";
-        dialogues[3] = "I'm horny!";
-        dialogues[4] = "Fuck me!";
+        dialogues[0] = "I need water!";
+        dialogues[1] = "I need food!";
+        dialogues[2] = "I need water and food!";
+        dialogues[3] = "I'm making milk!";
+        dialogues[4] = "The milk is ready!";
         
     }
     
@@ -92,10 +93,9 @@ public class RealCow  extends Entity{
         // Character specific stuff
         int i = 0;
         
-        if(milk == 0){
+        if(water == 0 && corn != 0 && milk == 0){
             i = 0;
         }
-        /*
         if(water != 0 && corn == 0 && milk == 0){
             i = 1;
         }
@@ -108,7 +108,6 @@ public class RealCow  extends Entity{
         if(water == 0 && corn == 0 && milk > 0){
             i = 4;
         }
-        */
         
         super.speak(i);
         

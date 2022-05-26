@@ -35,7 +35,7 @@ public class Entity {
     int dialogueIndex = 0;
     public int water;
     public int milk;
-    public int weed;
+    public int apple;
     public int corn;
     public int seed;
     public int money;

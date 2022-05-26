@@ -55,7 +55,6 @@ public class Player extends Entity {
         corn = 3;
         money = 0;
         seed = 3;
-        weed = 0;
     }
     
     public void getPlayerImage(){
