@@ -5,6 +5,7 @@
 package main;
 
 import entity.Cow;
+import entity.RealCow;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Field;
@@ -76,6 +77,10 @@ public class AssetSetter {
         
         gp.npc[0] = new Cow(gp);
         gp.npc[0].worldX = gp.tileSize*29;
+        gp.npc[0].worldY = gp.tileSize*17;
+        
+        gp.npc[0] = new RealCow(gp);
+        gp.npc[0].worldX = gp.tileSize*25;
         gp.npc[0].worldY = gp.tileSize*17;
         
         /*

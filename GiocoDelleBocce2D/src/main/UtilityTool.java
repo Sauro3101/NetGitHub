@@ -68,7 +68,7 @@ public class UtilityTool {
         try {
             fin.close();
         } catch (Exception ex) {
-            System.out.println("diocane");
+            System.out.println("non posso chiudere");
         }
         
         return a;

@@ -462,7 +462,7 @@ public class UI {
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize*6;
         
-        drawItemWindow(x, y, width, height);
+        drawItemWindow(x, y, width, height, false);
         
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
         String text = "PAUSED";
@@ -526,40 +526,72 @@ public class UI {
     public void drawChestScreen(){
         
         // Window
-        int x = gp.tileSize*2;
-        int y = gp.screenHeight/2 - gp.tileSize*3;
-        int width = gp.screenWidth - (gp.tileSize*4);
-        int height = gp.tileSize*6;
+        int x = gp.tileSize;
+        int y = gp.screenHeight/2 - gp.tileSize*6;
+        int width = gp.screenWidth - (gp.tileSize*7);
+        int height = gp.tileSize*8;
         
-        drawItemWindow(x, y, width, height);
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y+gp.tileSize*2, width, height, 35, 35);
+        g2.fillRoundRect(x+gp.tileSize+width, y+gp.tileSize*2, gp.tileSize*4, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+gp.tileSize*2+5, width-10, height-10, 25, 25);
+        g2.drawRoundRect(x+gp.tileSize+width+5, y+gp.tileSize*2+5, gp.tileSize*4-10, height-10, 25, 25);
+
         
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
-        x += gp.tileSize*3;
-        y += gp.tileSize*1.3;
-        g2.drawString("Water: ", x, y);
+        x += gp.tileSize*0.5;
+        y += gp.tileSize*3.6;
+        g2.drawString("Prices: ", x, y);
+        g2.drawString("Invent: ", x+gp.tileSize+width, y);
+        x += 40;
+        y += 60;
+        g2.drawString("Water:", x, y);
+        g2.drawString("+ " + gp.waterPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/4), gp.tileSize/2, gp.tileSize/2, null);
         g2.drawImage(water, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         if(commandNum == 0){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.water, x+gp.tileSize+width, y);
+        g2.drawImage(water, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
-        g2.drawString("Milk: ", x, y);
+        g2.drawString("Milk:", x, y);
+        g2.drawString("+ " + gp.milkPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/3), gp.tileSize/2, gp.tileSize/2, null);
         g2.drawImage(milk, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         if(commandNum == 1){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.milk, x+gp.tileSize+width, y);
+        g2.drawImage(milk, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
-        g2.drawString("Seed: ", x, y);
+        g2.drawString("Seed:", x, y);
+        g2.drawString("+ " + gp.seedPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/2), gp.tileSize/2, gp.tileSize/2, null);
         g2.drawImage(seed, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         if(commandNum == 2){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.seed, x+gp.tileSize+width, y);
+        g2.drawImage(seed, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
-        g2.drawString("Corn: ", x, y);
+        g2.drawString("Corn:", x, y);
+        g2.drawString("+ " + gp.cornPrice, x+gp.tileSize*2, y);
+        g2.drawImage(coin, x+gp.tileSize*3, y-gp.tileSize+10+(gp.tileSize/2), gp.tileSize/2, gp.tileSize/2, null);
         g2.drawImage(corn, x+gp.tileSize*5, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         if(commandNum == 3){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
-        
+        g2.drawString("x" + gp.player.corn, x+gp.tileSize+width, y);
+        g2.drawImage(corn, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         
     }
     
@@ -571,7 +603,7 @@ public class UI {
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize*6;
         
-        drawItemWindow(x, y, width, height);
+        drawItemWindow(x, y, width, height, false);
         
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
         x += gp.tileSize*3;
@@ -610,17 +642,28 @@ public class UI {
     public void drawShopScreen(){
         
         // Window
-        int x = gp.tileSize*2;
-        int y = gp.screenHeight/2 - gp.tileSize*3;
-        int width = gp.screenWidth - (gp.tileSize*4);
+        int x = gp.tileSize;
+        int y = gp.screenHeight/2 - gp.tileSize*6;
+        int width = gp.screenWidth - (gp.tileSize*7);
         int height = gp.tileSize*8;
         
-        drawItemWindow(x, y, width, height);
+        Color c = new Color(0, 0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y+gp.tileSize*2, width, height, 35, 35);
+        g2.fillRoundRect(x+gp.tileSize+width, y+gp.tileSize*2, gp.tileSize*4, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+gp.tileSize*2+5, width-10, height-10, 25, 25);
+        g2.drawRoundRect(x+gp.tileSize+width+5, y+gp.tileSize*2+5, gp.tileSize*4-10, height-10, 25, 25);
+
         
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
-        x += gp.tileSize*1.5;
-        y += gp.tileSize*1.6;
+        x += gp.tileSize*0.5;
+        y += gp.tileSize*3.6;
         g2.drawString("Prices: ", x, y);
+        g2.drawString("Invent: ", x+gp.tileSize+width, y);
         x += 40;
         y += 60;
         g2.drawString("Water:", x, y);
@@ -630,6 +673,9 @@ public class UI {
         if(commandNum == 0){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.water, x+gp.tileSize+width, y);
+        g2.drawImage(water, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
         g2.drawString("Milk:", x, y);
         g2.drawString(" " + gp.milkPrice, x+gp.tileSize*2, y);
@@ -638,6 +684,9 @@ public class UI {
         if(commandNum == 1){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.milk, x+gp.tileSize+width, y);
+        g2.drawImage(milk, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
         g2.drawString("Seed:", x, y);
         g2.drawString(" " + gp.seedPrice, x+gp.tileSize*2, y);
@@ -646,6 +695,9 @@ public class UI {
         if(commandNum == 2){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.seed, x+gp.tileSize+width, y);
+        g2.drawImage(seed, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
+        
         y += 60;
         g2.drawString("Corn:", x, y);
         g2.drawString(" " + gp.cornPrice, x+gp.tileSize*2, y);
@@ -654,19 +706,35 @@ public class UI {
         if(commandNum == 3){
             g2.drawString("<", x+gp.tileSize*7, y);
         }
+        g2.drawString("x" + gp.player.corn, x+gp.tileSize+width, y);
+        g2.drawImage(corn, x+gp.tileSize*2+width, y-gp.tileSize+10, gp.tileSize, gp.tileSize, null);
         
     }
     
-    public void drawItemWindow(int x, int y, int width, int height){
-        
-        Color c = new Color(0, 0, 0, 210);
-        g2.setColor(c);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
-        
-        c = new Color(255, 255, 255);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    public void drawItemWindow(int x, int y, int width, int height, boolean inventItems){
+        if(inventItems){
+
+            Color c = new Color(0, 0, 0, 210);
+            g2.setColor(c);
+            g2.fillRoundRect(x, y+gp.tileSize*2, width, height, 35, 35);
+            g2.fillRoundRect(x+gp.tileSize*2, y-gp.tileSize*2, width-gp.tileSize*2, gp.tileSize*3, 35, 35);
+
+            c = new Color(255, 255, 255);
+            g2.setColor(c);
+            g2.setStroke(new BasicStroke(5));
+            g2.drawRoundRect(x+5, y+gp.tileSize*2+5, width-10, height-10, 25, 25);
+            g2.drawRoundRect(x+gp.tileSize*2+5, y-gp.tileSize*2+5, width-gp.tileSize*2-10, gp.tileSize*3-10, 25, 25);
+
+        }else{
+            Color c = new Color(0, 0, 0, 210);
+            g2.setColor(c);
+            g2.fillRoundRect(x, y, width, height, 35, 35);
+
+            c = new Color(255, 255, 255);
+            g2.setColor(c);
+            g2.setStroke(new BasicStroke(5));
+            g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+        }
         
     }
     

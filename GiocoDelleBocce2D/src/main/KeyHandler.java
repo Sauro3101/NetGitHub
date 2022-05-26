@@ -178,7 +178,7 @@ public class KeyHandler implements KeyListener{
                 if(code == KeyEvent.VK_BACK_SPACE){
                     if(gp.saveName.length() > 1){
                         gp.saveName = gp.saveName.substring(0, gp.saveName.length()-1);
-                        System.out.println("BACKSPACE");
+                        //System.out.println("BACKSPACE");
                     }
                 }
                 if(code == KeyEvent.VK_SPACE){
@@ -203,8 +203,8 @@ public class KeyHandler implements KeyListener{
 
                     if(gp.ui.commandNum == 0){
                         gp.gameState = gp.playState;
-                        gp.gd = new GameData(gp, gp.saveName);
                         gp.gd.uploadData();
+                        System.out.println(gp.saves);
                         gp.saves.add(gp.gd);
                         gp.ui.commandNum = 0;
                     }
@@ -291,7 +291,11 @@ public class KeyHandler implements KeyListener{
             }
             
         }else if(gp.gameState == gp.playState){
-        
+            
+            if(code == KeyEvent.VK_L){
+                gp.player.money += 100;
+                //System.out.println("su");
+            }
             if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
                 upPressed = true;
                 //System.out.println("su");
@@ -429,7 +433,7 @@ public class KeyHandler implements KeyListener{
 
                 if(gp.ui.commandNum == 0){
                     if(gp.player.money >= gp.waterPrice){
-                        System.out.println("Buy water");
+                        //System.out.println("Buy water");
                         gp.ui.addMessage("Water +1!");
                         gp.player.water += 1;
                         gp.player.money -= gp.waterPrice;
@@ -438,7 +442,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 1){
                     if(gp.player.money >= gp.milkPrice){
-                        System.out.println("Buy milk");
+                        //System.out.println("Buy milk");
                         gp.ui.addMessage("Milk +1!");
                         gp.player.milk += 1;
                         gp.player.money -= gp.milkPrice;
@@ -447,7 +451,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 2){
                     if(gp.player.money >= gp.seedPrice){
-                        System.out.println("Buy seed");
+                        //System.out.println("Buy seed");
                         gp.ui.addMessage("Seed +1!");
                         gp.player.seed += 1;
                         gp.player.money -= gp.seedPrice;
@@ -456,7 +460,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 3){
                     if(gp.player.money >= gp.cornPrice){
-                        System.out.println("Buy corn");
+                        //System.out.println("Buy corn");
                         gp.ui.addMessage("Corn +1!");
                         gp.player.corn += 1;
                         gp.player.money -= gp.cornPrice;
@@ -491,7 +495,7 @@ public class KeyHandler implements KeyListener{
                 if(gp.ui.commandNum == 0){
                     // Controllo se in cesta ci sono abbastanza oggetti, li tolgo dalla cesta, e li do al personaggio
                     if(gp.player.water > 0){
-                        System.out.println("Sell water");
+                        //System.out.println("Sell water");
                         gp.ui.addMessage("Water -1!");
                         gp.player.water -= 1;
                         gp.player.money += gp.waterPrice;
@@ -500,7 +504,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 1){
                     if(gp.player.milk > 0){
-                        System.out.println("Sell milk");
+                        //System.out.println("Sell milk");
                         gp.ui.addMessage("Milk -1!");
                         gp.player.milk -= 1;
                         gp.player.money += gp.milkPrice;
@@ -509,7 +513,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 2){
                     if(gp.player.seed > 0){
-                        System.out.println("Sell seed");
+                        //System.out.println("Sell seed");
                         gp.ui.addMessage("Seed -1!");
                         gp.player.seed -= 1;
                         gp.player.money += gp.seedPrice;
@@ -518,7 +522,7 @@ public class KeyHandler implements KeyListener{
                 }
                 if(gp.ui.commandNum == 3){
                     if(gp.player.corn > 0){
-                        System.out.println("Sell corn");
+                        //System.out.println("Sell corn");
                         gp.ui.addMessage("Corn -1!");
                         gp.player.corn -= 1;
                         gp.player.money += gp.cornPrice;

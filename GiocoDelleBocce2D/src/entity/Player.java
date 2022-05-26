@@ -150,13 +150,13 @@ public class Player extends Entity {
                     }
                     break;
                 case "field":
-                    System.out.println("field collision");
+                    //System.out.println("field collision");
                     if(gp.keyH.enterPressed){
                         gp.gameState = gp.cornState;
                     }
                     break;
                 case "corn4":
-                    System.out.println("corn collision");
+                    //System.out.println("corn collision");
                     if(gp.keyH.enterPressed){
                         gp.gameState = gp.cornState;
                     }

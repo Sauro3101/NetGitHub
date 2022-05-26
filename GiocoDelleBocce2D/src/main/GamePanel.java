@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable{
     // SAVING INFOS
     
     UtilityTool uTool = new UtilityTool();
-    GameData gd;
+    GameData gd = new GameData(this, saveName);
     
     
     
@@ -119,7 +119,6 @@ public class GamePanel extends JPanel implements Runnable{
         long timer = 0;
         int drawCount = 0;
         
-        saves = uTool.readFile();
         
         //GAME LOOP
         while(gameThread != null){
@@ -140,7 +139,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             if(timer >= 1000000000){
-                System.out.println("FPS: " + drawCount);
+                //System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
                 cont = timer;
