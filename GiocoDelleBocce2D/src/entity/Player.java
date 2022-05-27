@@ -174,7 +174,6 @@ public class Player extends Entity {
     
     public void interactNPC(int i){
         
-        
         cont++;
         if(i != 999){
             //System.out.println("NPC hitten");
